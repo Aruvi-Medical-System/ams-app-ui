@@ -1,0 +1,2201 @@
+
+// --- About.jsx ---
+import React from 'react';
+import { FaAward, FaGlobe, FaUsers, FaShieldAlt } from 'react-icons/fa';
+
+const About = ({ company }) => {
+  const stats = [
+    { icon: <FaAward />, number: company.stats.yearsExperience, label: 'Years Experience' },
+    { icon: <FaGlobe />, number: company.stats.countriesServed, label: 'Countries Served' },
+    { icon: <FaUsers />, number: company.stats.healthcarePartners, label: 'Healthcare Partners' },
+    { icon: <FaShieldAlt />, number: '100%', label: 'Quality Certified' }
+  ];
+
+  return (
+    <section id="about" className="section">
+      <div className="container">
+        <div className="about-content">
+          <div className="about-text">
+            <h2 className="section-title">About {company.name}</h2>
+            <p className="about-description">
+              Aruvi Medical System (AMS), founded in August 2022 by Mr. Elangovan, is dedicated to delivering advanced, reliable, and affordable medical equipment for Operation Theatres and ICUs. We combine innovation and quality to make world-class healthcare tools accessible to all. Our comprehensive product range includes OT instruments, patient monitors, defibrillators, diagnostic devices, and more. Backed by a skilled team, AMS ensures exceptional support and lasting partnerships built on trust and excellence.
+            </p>
+            <div className="features-grid">
+              {company.features.map((feature, index) => (
+                <div key={index} className="feature-item">
+                  <div className="feature-icon">{feature.icon}</div>
+                  <h4>{feature.title}</h4>
+                  <p>{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        {/* Stats Section */}
+        <div className="stats-grid">
+          {stats.map((stat, index) => (
+            <div key={index} className="stat-card">
+              <div className="stat-icon">{stat.icon}</div>
+              <div className="stat-number">{stat.number}</div>
+              <div className="stat-label">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
+
+// --- AdvancedHero.jsx ---
+import React, { useEffect, useRef } from 'react';
+import { FaSearch, FaArrowDown } from 'react-icons/fa';
+import { useParallax } from '../hooks/useParallax';
+
+const AdvancedHero = ({ company, searchQuery, setSearchQuery }) => {
+  const parallaxRef = useParallax(0.3);
+  const scrollIndicatorRef = useRef(null);
+
+  useEffect(() => {
+    // Scroll indicator animation
+    const indicator = scrollIndicatorRef.current;
+    if (indicator) {
+      const animateIndicator = () => {
+        indicator.style.transform = 'translateY(0px)';
+        setTimeout(() => {
+          indicator.style.transform = 'translateY(10px)';
+        }, 800);
+      };
+      
+      const interval = setInterval(animateIndicator, 1600);
+      return () => clearInterval(interval);
+    }
+  }, []);
+
+  const handleScrollDown = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section className="hero morphing-bg">
+      {/* Animated Background Particles */}
+      <div className="particles" id="hero-particles"></div>
+      
+      <div className="hero-background">
+        <div className="container">
+          <div className="hero-content">
+            <div className="hero-text">
+              <div className="text-reveal">
+                <h1 className="hero-title gradient-text typewriter">
+                  Premium Medical Equipment for Healthcare Excellence
+                </h1>
+              </div>
+              
+              <div className="text-reveal" style={{ animationDelay: '0.5s' }}>
+                <p className="hero-subtitle">
+                  {company.tagline} Trusted by {company.stats.healthcarePartners} hospitals and clinics worldwide.
+                </p>
+              </div>
+
+              <div className="hero-buttons stagger-children" data-delay="1000">
+                <a href="#products" className="btn btn-primary magnetic-btn">
+                  Browse Products
+                </a>
+                <a href="#contact" className="btn btn-secondary magnetic-btn">
+                  Request Quote
+                </a>
+              </div>
+            </div>
+
+            <div className="hero-image" ref={parallaxRef}>
+              <div className="medical-banner advanced-card floating">
+                <div className="banner-content">
+                  <h3>Advanced Healthcare Solutions</h3>
+                  <p>Cutting-edge equipment for modern medical facilities</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Enhanced Search Section */}
+          <div className="search-section fade-in" data-delay="1500">
+            <div className="search-container">
+              <div className="search-input-group glow">
+                <FaSearch className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search for medical equipment, devices, and supplies..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="search-input"
+                />
+                <button className="search-btn magnetic-btn">
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div 
+            ref={scrollIndicatorRef}
+            className="scroll-indicator"
+            onClick={handleScrollDown}
+          >
+            <FaArrowDown />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default AdvancedHero;
+
+// --- AdvancedLoading.jsx ---
+import React from 'react';
+
+const AdvancedLoading = () => {
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'linear-gradient(135deg, var(--light-bg), var(--white))',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 9999
+    }}>
+      <div className="advanced-loader">
+        <div className="loader-dot"></div>
+        <div className="loader-dot"></div>
+        <div className="loader-dot"></div>
+      </div>
+      <p style={{ marginTop: '20px', color: 'var(--text-light)' }}>
+        Loading Premium Experience...
+      </p>
+    </div>
+  );
+};
+
+export default AdvancedLoading;
+
+// --- Certifications.jsx ---
+import React from 'react';
+import { FaCertificate, FaCheckCircle } from 'react-icons/fa';
+
+const Certifications = ({ company }) => {
+  return (
+    <section id="certifications" className="section light-bg">
+      <div className="container">
+        <h2 className="section-title">Certifications & Quality</h2>
+        <p className="section-subtitle">
+          Committed to the highest standards of quality and safety
+        </p>
+        
+        <div className="certifications-grid">
+          {company.certifications.map((cert, index) => (
+            <div key={index} className="certification-card card">
+              <FaCertificate className="cert-icon" />
+              <h3>{cert.name}</h3>
+              <p>{cert.description}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div className="quality-standards">
+          <h3>Our Quality Promise</h3>
+          <div className="standards-list">
+            <div className="standard-item">
+              <FaCheckCircle className="check-icon" />
+              <span>Rigorous Quality Control</span>
+            </div>
+            <div className="standard-item">
+              <FaCheckCircle className="check-icon" />
+              <span>Regular Equipment Calibration</span>
+            </div>
+            <div className="standard-item">
+              <FaCheckCircle className="check-icon" />
+              <span>Comprehensive Documentation</span>
+            </div>
+            <div className="standard-item">
+              <FaCheckCircle className="check-icon" />
+              <span>Continuous Staff Training</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Certifications;
+
+// --- Contact.jsx ---
+import React, { useState } from 'react';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+
+const Contact = ({ company }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // For now, just log the data. Will integrate with free email service later.
+    console.log('Quote Request:', formData);
+    alert('Thank you for your inquiry! We will contact you soon.');
+    setFormData({ name: '', email: '', company: '', phone: '', message: '' });
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  return (
+    <section id="contact" className="section">
+      <div className="container">
+        <h2 className="section-title">Get In Touch</h2>
+        <p className="section-subtitle">
+          Ready to enhance your healthcare facility? Contact us today.
+        </p>
+        
+        <div className="contact-content">
+          <div className="contact-info">
+            <div className="contact-item">
+              <FaPhone className="contact-icon" />
+              <div>
+                <h4>Phone</h4>
+                <p>{company.contact.phone.primary}</p>
+              </div>
+            </div>
+            <div className="contact-item">
+              <FaEnvelope className="contact-icon" />
+              <div>
+                <h4>Email</h4>
+                <p>{company.contact.email.primary}</p>
+              </div>
+            </div>
+            <div className="contact-item">
+              <FaMapMarkerAlt className="contact-icon" />
+              <div>
+                <h4>Address</h4>
+                <p>{company.contact.address.headOffice}</p>
+              </div>
+            </div>
+            <div className="business-hours">
+              <h4>Business Hours</h4>
+              <p>Weekdays: {company.businessHours.weekdays}</p>
+              <p>Saturday: {company.businessHours.saturday}</p>
+              <p>Sunday: {company.businessHours.sunday}</p>
+            </div>
+          </div>
+          
+          <form className="contact-form card" onSubmit={handleSubmit}>
+            <h3>Request a Quote</h3>
+            <div className="form-group">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                name="company"
+                placeholder="Company Name"
+                value={formData.company}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <textarea
+                name="message"
+                placeholder="Your Message or Equipment Requirements"
+                rows="4"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></textarea>
+            </div>
+            <button type="submit" className="btn btn-primary">
+              <FaPaperPlane /> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
+
+// --- EnhancedHeader.jsx ---
+import React, { useState, useEffect } from 'react';
+import { FaPhone, FaEnvelope, FaUser, FaShoppingCart, FaBars, FaTimes, FaSearch } from 'react-icons/fa';
+
+const EnhancedHeader = ({ company, searchQuery, setSearchQuery }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+      {/* Top Bar - Enhanced like PVR Digital */}
+      <div className="top-bar">
+        <div className="container">
+          <div className="top-bar-content">
+            <div className="contact-info">
+              <span><FaPhone /> {company.contact.phone.primary}</span>
+              <span><FaEnvelope /> {company.contact.email.primary}</span>
+            </div>
+            <div className="top-bar-actions">
+              <a href="#contact" className="btn-outline">Get Quote</a>
+              <a href="#login" className="auth-link"><FaUser /> B2B Portal</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation with Sticky Effect */}
+      <nav className={`main-nav ${isScrolled ? 'sticky' : ''}`}>
+        <div className="container">
+          <div className="nav-content">
+            <div className="logo">
+              <h2>{company.name}</h2>
+            </div>
+            
+            <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+              <a href="#home" onClick={() => setIsMenuOpen(false)}>Home</a>
+              <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
+              <a href="#products" onClick={() => setIsMenuOpen(false)}>Products</a>
+              <a href="#solutions" onClick={() => setIsMenuOpen(false)}>Solutions</a>
+              <a href="#certifications" onClick={() => setIsMenuOpen(false)}>Certifications</a>
+              <a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a>
+            </div>
+
+            <div className="nav-actions">
+              <div className="search-box">
+                <FaSearch className="search-icon" />
+                <input 
+                  type="text" 
+                  placeholder="Search equipment..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              <FaShoppingCart className="cart-icon" />
+              <div className="mobile-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <FaTimes /> : <FaBars />}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+export default EnhancedHeader;
+
+// --- EnhancedHero.jsx ---
+import React from 'react';
+import { FaPlay, FaArrowDown, FaSearch } from 'react-icons/fa';
+
+const EnhancedHero = ({ company, searchQuery, setSearchQuery }) => {
+  const handleScrollDown = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section className="hero enhanced-hero">
+      <div className="hero-background">
+        <div className="container">
+          <div className="hero-content enhanced-hero-content">
+            <div className="hero-text">
+              <div className="hero-badge">
+                <span>Trusted by {company.stats.healthcarePartners}+ Healthcare Facilities</span>
+              </div>
+              
+              <h1 className="hero-title enhanced-title">
+                Advanced <span className="highlight">Medical Equipment</span> 
+                for Modern Healthcare
+              </h1>
+              
+              <p className="hero-subtitle enhanced-subtitle">
+                {company.tagline} Premium surgical instruments, diagnostic equipment, 
+                and healthcare solutions trusted by medical professionals worldwide.
+              </p>
+
+              <div className="hero-stats">
+                <div className="stat">
+                  <span className="number">{company.stats.yearsExperience}</span>
+                  <span className="label">Years Experience</span>
+                </div>
+                <div className="stat">
+                  <span className="number">{company.stats.countriesServed}</span>
+                  <span className="label">Countries Served</span>
+                </div>
+                <div className="stat">
+                  <span className="number">{company.stats.healthcarePartners}</span>
+                  <span className="label">Healthcare Partners</span>
+                </div>
+              </div>
+
+              <div className="hero-buttons enhanced-buttons">
+                <a href="#products" className="btn btn-primary">
+                  Explore Products
+                </a>
+                <a href="#contact" className="btn btn-secondary">
+                  <FaPlay /> Watch Demo
+                </a>
+              </div>
+            </div>
+
+            <div className="hero-visual">
+              <div className="floating-elements">
+                <div className="floating-card card-1">
+                  <div className="card-icon">🔪</div>
+                  <h4>Surgical Instruments</h4>
+                  <p>Precision tools for modern surgery</p>
+                </div>
+                <div className="floating-card card-2">
+                  <div className="card-icon">📊</div>
+                  <h4>Diagnostic Equipment</h4>
+                  <p>Advanced imaging & monitoring</p>
+                </div>
+                <div className="floating-card card-3">
+                  <div className="card-icon">🏥</div>
+                  <h4>Hospital Solutions</h4>
+                  <p>Complete healthcare packages</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Enhanced Search Section */}
+          <div className="search-section enhanced-search">
+            <div className="search-container">
+              <div className="search-input-group enhanced-search-group">
+                <FaSearch className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search for medical equipment, devices, and supplies..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="search-input"
+                />
+                <button className="search-btn">Search</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="scroll-indicator enhanced-scroll" onClick={handleScrollDown}>
+            <FaArrowDown />
+            <span>Scroll to Explore</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default EnhancedHero;
+
+// --- FeaturedProducts.jsx ---
+import React from 'react';
+import { FaStar, FaShoppingCart } from 'react-icons/fa';
+import { featuredProducts } from '../config/products';
+
+const FeaturedProducts = ({ onAddToQuote }) => {
+  const handleAddToQuote = (product) => {
+    if (onAddToQuote) {
+      onAddToQuote(product);
+    } else {
+      // Fallback: show alert if parent function not provided
+      alert(`Added ${product.name} to quote request!`);
+    }
+  };
+
+  const getProductInitials = (name) => {
+    return name.split(' ').map(word => word[0]).join('').toUpperCase();
+  };
+
+  return (
+    <section className="section">
+      <div className="container">
+        <h2 className="section-title">Featured Products</h2>
+        <p className="section-subtitle">
+          Top-quality medical equipment trusted by healthcare professionals
+        </p>
+        
+        <div className="products-grid">
+          {featuredProducts.map((product) => (
+            <div key={product.id} className="product-card card">
+              <div className="product-image">
+                {getProductInitials(product.name)}
+                <div className="product-badge">Featured</div>
+              </div>
+              <div className="product-content">
+                <h3 className="product-name">{product.name}</h3>
+                {product.variants && (
+                  <div className="product-variants">
+                    <small>Variants: {product.variants.join(', ')}</small>
+                  </div>
+                )}
+                <div className="product-brand">{product.description}</div>
+                <div className="product-rating">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar 
+                      key={i} 
+                      className={i < Math.floor(product.rating || 4.5) ? 'star filled' : 'star'} 
+                    />
+                  ))}
+                  <span>({product.rating || 4.5})</span>
+                </div>
+                <div className="product-features">
+                  {product.features.slice(0, 2).map((feature, i) => (
+                    <span key={i} className="feature-tag">{feature}</span>
+                  ))}
+                </div>
+                <div className="product-footer">
+                  <div className="price-section">
+                    <div className="product-price">${product.price}</div>
+                  </div>
+                  <button 
+                    className="btn btn-primary"
+                    onClick={() => handleAddToQuote(product)}
+                  >
+                    <FaShoppingCart /> Add to Quote
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FeaturedProducts;
+
+// --- FloatingButtons.jsx ---
+import React, { useState } from 'react';
+import { FaComment, FaQuoteRight, FaTimes } from 'react-icons/fa';
+
+const FloatingButtons = () => {
+  const [chatOpen, setChatOpen] = useState(false);
+
+  return (
+    <div className="floating-buttons">
+      {/* Request Quote Button */}
+      <a href="#contact" className="floating-btn quote-btn">
+        <FaQuoteRight />
+        <span>Request Quote</span>
+      </a>
+      
+      {/* Live Chat Button */}
+      <div className="chat-widget">
+        <button 
+          className="floating-btn chat-btn"
+          onClick={() => setChatOpen(!chatOpen)}
+        >
+          <FaComment />
+        </button>
+        
+        {chatOpen && (
+          <div className="chat-box">
+            <div className="chat-header">
+              <h4>Live Chat Support</h4>
+              <button onClick={() => setChatOpen(false)}>
+                <FaTimes />
+              </button>
+            </div>
+            <div className="chat-messages">
+              <div className="message agent">
+                <p>Hello! How can we help you today?</p>
+              </div>
+            </div>
+            <div className="chat-input">
+              <input type="text" placeholder="Type your message..." />
+              <button>Send</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default FloatingButtons;
+
+// --- Footer.jsx ---
+import React from 'react';
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+
+const Footer = ({ company }) => {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h3>{company.name}</h3>
+            <p>
+              {company.tagline} Your trusted partner in medical equipment supply, 
+              delivering excellence in healthcare solutions worldwide.
+            </p>
+            <div className="social-links">
+              <a href={company.social.facebook} target="_blank" rel="noopener noreferrer">
+                <FaFacebook />
+              </a>
+              <a href={company.social.twitter} target="_blank" rel="noopener noreferrer">
+                <FaTwitter />
+              </a>
+              <a href={company.social.linkedin} target="_blank" rel="noopener noreferrer">
+                <FaLinkedin />
+              </a>
+              <a href={company.social.instagram} target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </a>
+            </div>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#certifications">Certifications</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="#diagnostic">Diagnostic Equipment</a></li>
+              <li><a href="#surgical">Surgical Instruments</a></li>
+              <li><a href="#monitoring">Patient Monitoring</a></li>
+              <li><a href="#icu">ICU Equipment</a></li>
+              <li><a href="#lab">Laboratory Equipment</a></li>
+            </ul>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Contact Info</h4>
+            <div className="contact-info">
+              <p>📞 {company.contact.phone.primary}</p>
+              <p>✉️ {company.contact.email.primary}</p>
+              <p>📍 {company.contact.address.headOffice}</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} {company.legalName}. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+
+// --- Header.jsx ---
+import React from 'react';
+import { FaPhone, FaEnvelope, FaUser, FaShoppingCart } from 'react-icons/fa';
+
+const Header = ({ company, searchQuery, setSearchQuery }) => {
+  return (
+    <header className="header">
+      {/* Top Bar */}
+      <div className="top-bar">
+        <div className="container">
+          <div className="top-bar-content">
+            <div className="contact-info">
+              <span><FaPhone /> {company.contact.phone.primary}</span>
+              <span><FaEnvelope /> {company.contact.email.primary}</span>
+            </div>
+            <div className="auth-links">
+              <a href="#login"><FaUser /> B2B Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation */}
+      <nav className="main-nav">
+        <div className="container">
+          <div className="nav-content">
+            <div className="logo">
+              {company.logo.type === 'text' ? (
+                <h2>{company.logo.text}</h2>
+              ) : (
+                <img src={company.logo.image} alt={company.name} style={{ height: '40px' }} />
+              )}
+            </div>
+            <ul className="nav-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#certifications">Certifications</a></li>
+              <li><a href="#partners">Partners</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div className="nav-actions">
+              <FaShoppingCart className="cart-icon" />
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+export default Header;
+
+// --- Hero.jsx ---
+import React from 'react';
+import { FaSearch } from 'react-icons/fa';
+
+const Hero = ({ company, searchQuery, setSearchQuery }) => {
+  return (
+    <section className="hero">
+      <div className="hero-background">
+        <div className="container">
+          <div className="hero-content">
+            <div className="hero-text">
+              <h1 className="hero-title">
+                Premium Medical Equipment for Healthcare Excellence
+              </h1>
+              <p className="hero-subtitle">
+                {company.tagline} Trusted by {company.stats.healthcarePartners} hospitals and clinics worldwide.
+              </p>
+              <div className="hero-buttons">
+                <a href="#products" className="btn btn-primary">Browse Products</a>
+                <a href="#contact" className="btn btn-secondary">Request Quote</a>
+              </div>
+            </div>
+            <div className="hero-image">
+              <div className="medical-banner">
+                <div className="banner-content">
+                  <h3>Advanced Healthcare Solutions</h3>
+                  <p>Cutting-edge equipment for modern medical facilities</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Search Bar */}
+          <div className="search-section">
+            <div className="search-container">
+              <div className="search-input-group">
+                <FaSearch className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search for medical equipment, devices, and supplies..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="search-input"
+                />
+                <button className="search-btn">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
+
+// --- LocationMap.jsx ---
+import React from 'react';
+import { FaMapMarkerAlt, FaClock, FaPhone, FaEnvelope } from 'react-icons/fa';
+
+const LocationMap = () => {
+  // You can replace this with your actual Google Maps embed URL
+  const mapUrl = "https://www.google.com/maps/place/SDBC+UDHAYAM/@13.0861704,80.165787,17z/data=!4m6!3m5!1s0x3a52637711ecf90f:0x128a33ea8f7bab52!8m2!3d13.0860615!4d80.165717!16s%2Fg%2F11fpd7msj4?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D";
+
+  return (
+    <section id="location" className="section location-section">
+      <div className="container">
+        <div className="section-header">
+          <h2 className="section-title">Visit Our Location</h2>
+          <p className="section-subtitle">
+            Conveniently located in the heart of the medical district
+          </p>
+        </div>
+
+        <div className="location-content">
+          <div className="map-container">
+            <div className="map-wrapper">
+              <iframe
+                src={mapUrl}
+                width="100%"
+                height="450"
+                style={{ border: 0, borderRadius: '15px' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="MedEquip Pro Location"
+                className="location-map"
+              ></iframe>
+            </div>
+          </div>
+
+          <div className="location-info">
+            <div className="info-card">
+              <div className="info-icon">
+                <FaMapMarkerAlt />
+              </div>
+              <div className="info-content">
+                <h4>Our Address</h4>
+                <p>123 Healthcare Avenue<br />Medical District<br />New York, NY 10001</p>
+              </div>
+            </div>
+
+            <div className="info-card">
+              <div className="info-icon">
+                <FaClock />
+              </div>
+              <div className="info-content">
+                <h4>Business Hours</h4>
+                <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
+                   Saturday: 9:00 AM - 4:00 PM<br />
+                   Sunday: Closed</p>
+              </div>
+            </div>
+
+            <div className="info-card">
+              <div className="info-icon">
+                <FaPhone />
+              </div>
+              <div className="info-content">
+                <h4>Contact Info</h4>
+                <p>Phone: +1 (555) 123-4567<br />
+                   Emergency: +1 (555) 123-4568<br />
+                   Fax: +1 (555) 123-4569</p>
+              </div>
+            </div>
+
+            <div className="info-card">
+              <div className="info-icon">
+                <FaEnvelope />
+              </div>
+              <div className="info-content">
+                <h4>Email</h4>
+                <p>info@medequippro.com<br />
+                   support@medequippro.com<br />
+                   sales@medequippro.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="location-features">
+          <div className="feature">
+            <div className="feature-icon">🅿️</div>
+            <h5>Free Parking</h5>
+            <p>Ample parking space available</p>
+          </div>
+          <div className="feature">
+            <div className="feature-icon">♿</div>
+            <h5>Accessible</h5>
+            <p>Wheelchair accessible facility</p>
+          </div>
+          <div className="feature">
+            <div className="feature-icon">🚚</div>
+            <h5>Loading Dock</h5>
+            <p>Easy equipment pickup & delivery</p>
+          </div>
+          <div className="feature">
+            <div className="feature-icon">🏢</div>
+            <h5>Showroom</h5>
+            <p>Visit our equipment showroom</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default LocationMap;
+
+// --- ParticleBackground.jsx ---
+import React, { useEffect, useRef } from 'react';
+
+const ParticleBackground = () => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Particle system
+    const particles = [];
+    const particleCount = 50;
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+        this.color = `rgba(49, 130, 206, ${Math.random() * 0.3})`;
+        this.oscillation = Math.random() * Math.PI * 2;
+      }
+
+      update() {
+        this.x += this.speedX + Math.sin(this.oscillation) * 0.5;
+        this.y += this.speedY + Math.cos(this.oscillation) * 0.3;
+        this.oscillation += 0.02;
+
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+      }
+
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Initialize particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    // Animation loop
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(49, 130, 206, ${0.1 * (1 - distance / 100)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Update and draw particles
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: -1
+      }}
+    />
+  );
+};
+
+export default ParticleBackground;
+
+// --- Partners.jsx ---
+import React from 'react';
+
+const Partners = ({ company }) => {
+  return (
+    <section id="partners" className="section light-bg">
+      <div className="container">
+        <h2 className="section-title">Our Partner Hospitals</h2>
+        <p className="section-subtitle">
+          Trusted by leading healthcare institutions worldwide
+        </p>
+        
+        <div className="partners-grid">
+          {company.partnerHospitals.map((partner, index) => (
+            <div key={index} className="partner-card">
+              <div className="partner-logo">{partner.logo}</div>
+              <h4>{partner.name}</h4>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Partners;
+
+// --- ProductCategories.jsx ---
+import React from 'react';
+import { productCategories } from '../config/products';
+
+const ProductCategories = () => {
+  return (
+    <section id="products" className="section light-bg">
+      <div className="container">
+        <h2 className="section-title">Product Categories</h2>
+        <p className="section-subtitle">
+          Comprehensive range of medical equipment for all healthcare needs
+        </p>
+        
+        <div className="categories-grid">
+          {productCategories.map((category, index) => (
+            <div key={category.id} className="category-card card">
+              <div className="category-icon">{category.icon}</div>
+              <h3 className="category-name">{category.name}</h3>
+              <p className="category-description">{category.description}</p>
+              <a href={`#${category.id}`} className="category-link">Explore Products →</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProductCategories;
+
+// --- ProductComparison.jsx ---
+// src/components/ProductComparison.jsx
+import React, { useState } from 'react';
+import { FaTimes, FaChartBar, FaBalanceScale } from 'react-icons/fa';
+
+const ProductComparison = () => {
+  const [comparisonItems, setComparisonItems] = useState([]);
+  const [showComparison, setShowComparison] = useState(false);
+
+  const addToComparison = (product) => {
+    if (comparisonItems.length >= 4) {
+      alert('Maximum 4 products can be compared at once');
+      return;
+    }
+    
+    if (!comparisonItems.find(item => item.id === product.id)) {
+      setComparisonItems(prev => [...prev, product]);
+    }
+  };
+
+  const removeFromComparison = (productId) => {
+    setComparisonItems(prev => prev.filter(item => item.id !== productId));
+  };
+
+  const clearComparison = () => {
+    setComparisonItems([]);
+  };
+
+  return (
+    <>
+      {/* Comparison Button */}
+      <div 
+        className="comparison-btn"
+        onClick={() => setShowComparison(true)}
+      >
+        <FaBalanceScale />
+        {comparisonItems.length > 0 && (
+          <span className="comparison-badge">{comparisonItems.length}</span>
+        )}
+      </div>
+
+      {/* Comparison Modal */}
+      {showComparison && (
+        <div className="comparison-modal">
+          <div className="comparison-header">
+            <h3>
+              <FaChartBar /> Product Comparison
+            </h3>
+            <div className="comparison-actions">
+              <button onClick={clearComparison} className="btn btn-secondary">
+                Clear All
+              </button>
+              <button onClick={() => setShowComparison(false)}>
+                <FaTimes />
+              </button>
+            </div>
+          </div>
+
+          <div className="comparison-content">
+            {comparisonItems.length === 0 ? (
+              <p className="empty-comparison">
+                Add products to compare their features and specifications
+              </p>
+            ) : (
+              <div className="comparison-table">
+                <div className="comparison-row header">
+                  <div className="comparison-cell">Feature</div>
+                  {comparisonItems.map(item => (
+                    <div key={item.id} className="comparison-cell product-header">
+                      <button 
+                        className="remove-comparison"
+                        onClick={() => removeFromComparison(item.id)}
+                      >
+                        <FaTimes />
+                      </button>
+                      <h4>{item.name}</h4>
+                      <p className="price">${item.price.toLocaleString()}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Price Comparison */}
+                <div className="comparison-row">
+                  <div className="comparison-cell">Price</div>
+                  {comparisonItems.map(item => (
+                    <div key={item.id} className="comparison-cell">
+                      ${item.price.toLocaleString()}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Category */}
+                <div className="comparison-row">
+                  <div className="comparison-cell">Category</div>
+                  {comparisonItems.map(item => (
+                    <div key={item.id} className="comparison-cell">
+                      {item.category}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Features */}
+                <div className="comparison-row">
+                  <div className="comparison-cell">Key Features</div>
+                  {comparisonItems.map(item => (
+                    <div key={item.id} className="comparison-cell">
+                      <ul>
+                        {item.features?.map((feature, index) => (
+                          <li key={index}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Specifications */}
+                <div className="comparison-row">
+                  <div className="comparison-cell">Specifications</div>
+                  {comparisonItems.map(item => (
+                    <div key={item.id} className="comparison-cell">
+                      {item.specifications && Object.entries(item.specifications).map(([key, value]) => (
+                        <div key={key} className="spec">
+                          <strong>{key}:</strong> {value}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+// Add to Product Card component
+const ProductCard = ({ product, onAddToQuote, onAddToComparison }) => {
+  return (
+    <div className="product-card card">
+      {/* ... existing product card content ... */}
+      
+      <div className="product-actions">
+        <button 
+          className="btn btn-primary"
+          onClick={() => onAddToQuote(product)}
+        >
+          Add to Quote
+        </button>
+        <button 
+          className="btn btn-secondary comparison-btn"
+          onClick={() => onAddToComparison(product)}
+        >
+          <FaBalanceScale /> Compare
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ProductComparison;
+
+// --- ProductSearchFilter.jsx ---
+// src/components/ProductSearchFilter.jsx
+import React, { useState, useMemo } from 'react';
+import { FaSearch, FaFilter, FaTimes } from 'react-icons/fa';
+import { allProducts, productCategories } from '../config/products';
+
+const ProductSearchFilter = ({ onFilterChange }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [priceRange, setPriceRange] = useState([0, 10000]);
+  const [showFilters, setShowFilters] = useState(false);
+
+  const categories = useMemo(() => [
+    { id: 'all', name: 'All Products' },
+    ...productCategories
+  ], []);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    applyFilters(e.target.value, selectedCategory, priceRange);
+  };
+
+  const applyFilters = (search, category, price) => {
+    let filtered = allProducts;
+
+    // Search filter
+    if (search) {
+      filtered = filtered.filter(product =>
+        product.name.toLowerCase().includes(search.toLowerCase()) ||
+        product.description.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    // Category filter
+    if (category !== 'all') {
+      filtered = filtered.filter(product => product.category === category);
+    }
+
+    // Price filter
+    filtered = filtered.filter(product => 
+      product.price >= price[0] && product.price <= price[1]
+    );
+
+    onFilterChange(filtered);
+  };
+
+  return (
+    <div className="product-search-filter">
+      <div className="search-filter-header">
+        <div className="search-box">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search medical equipment..."
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+        <button 
+          className="filter-toggle"
+          onClick={() => setShowFilters(!showFilters)}
+        >
+          <FaFilter /> Filters
+        </button>
+      </div>
+
+      {showFilters && (
+        <div className="filter-panel">
+          <div className="filter-section">
+            <h4>Category</h4>
+            <div className="category-filters">
+              {categories.map(category => (
+                <button
+                  key={category.id}
+                  className={`category-filter ${selectedCategory === category.id ? 'active' : ''}`}
+                  onClick={() => {
+                    setSelectedCategory(category.id);
+                    applyFilters(searchTerm, category.id, priceRange);
+                  }}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="filter-section">
+            <h4>Price Range: ${priceRange[0]} - ${priceRange[1]}</h4>
+            <div className="price-slider">
+              <input
+                type="range"
+                min="0"
+                max="10000"
+                step="100"
+                value={priceRange[0]}
+                onChange={(e) => {
+                  const newRange = [parseInt(e.target.value), priceRange[1]];
+                  setPriceRange(newRange);
+                  applyFilters(searchTerm, selectedCategory, newRange);
+                }}
+              />
+              <input
+                type="range"
+                min="0"
+                max="10000"
+                step="100"
+                value={priceRange[1]}
+                onChange={(e) => {
+                  const newRange = [priceRange[0], parseInt(e.target.value)];
+                  setPriceRange(newRange);
+                  applyFilters(searchTerm, selectedCategory, newRange);
+                }}
+              />
+            </div>
+          </div>
+
+          <button 
+            className="clear-filters"
+            onClick={() => {
+              setSearchTerm('');
+              setSelectedCategory('all');
+              setPriceRange([0, 10000]);
+              applyFilters('', 'all', [0, 10000]);
+            }}
+          >
+            <FaTimes /> Clear All
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ProductSearchFilter;
+
+// --- QuoteCart.jsx ---
+import React, { useState, useEffect } from 'react';
+import { FaShoppingCart, FaTimes, FaPaperPlane, FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
+
+const QuoteCart = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [showQuoteForm, setShowQuoteForm] = useState(false);
+
+  // Load cart from localStorage on component mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem('medical_quote_cart');
+    if (savedCart) {
+      try {
+        setCartItems(JSON.parse(savedCart));
+      } catch (error) {
+        console.error('Error loading cart:', error);
+      }
+    }
+  }, []);
+
+  // Save cart to localStorage whenever cartItems change
+  useEffect(() => {
+    localStorage.setItem('medical_quote_cart', JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  // Function to add product to quote (will be called from product cards)
+  const addToQuote = (product) => {
+    setCartItems(prev => {
+      const existingItem = prev.find(item => item.id === product.id);
+      if (existingItem) {
+        return prev.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...prev, { 
+        ...product, 
+        quantity: 1,
+        addedAt: new Date().toISOString()
+      }];
+    });
+    setIsOpen(true);
+  };
+
+  const removeFromQuote = (productId) => {
+    setCartItems(prev => prev.filter(item => item.id !== productId));
+  };
+
+  const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity < 1) {
+      removeFromQuote(productId);
+      return;
+    }
+    setCartItems(prev =>
+      prev.map(item =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  const totalAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  return (
+    <>
+      {/* Cart Button */}
+      <div className="quote-cart-btn" onClick={() => setIsOpen(true)}>
+        <FaShoppingCart />
+        {cartItems.length > 0 && (
+          <span className="cart-badge">{cartItems.length}</span>
+        )}
+      </div>
+
+      {/* Cart Sidebar */}
+      {isOpen && (
+        <div className="quote-cart-sidebar">
+          <div className="cart-header">
+            <h3>Quote Request</h3>
+            <button 
+              className="close-btn"
+              onClick={() => setIsOpen(false)}
+            >
+              <FaTimes />
+            </button>
+          </div>
+
+          <div className="cart-content">
+            {cartItems.length === 0 ? (
+              <div className="empty-cart">
+                <p>Your quote request is empty</p>
+                <p className="empty-cart-subtitle">Add products to get a quote</p>
+              </div>
+            ) : (
+              <>
+                <div className="cart-items">
+                  {cartItems.map(item => (
+                    <div key={item.id} className="cart-item">
+                      <div className="item-image">
+                        <div className="product-image-placeholder-small">
+                          {item.name.split(' ').map(word => word[0]).join('').toUpperCase()}
+                        </div>
+                      </div>
+                      <div className="item-details">
+                        <h4 className="item-name">{item.name}</h4>
+                        <p className="item-price">${item.price.toLocaleString()}</p>
+                        <div className="quantity-controls">
+                          <button 
+                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            className="quantity-btn"
+                          >
+                            <FaMinus />
+                          </button>
+                          <span className="quantity">{item.quantity}</span>
+                          <button 
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            className="quantity-btn"
+                          >
+                            <FaPlus />
+                          </button>
+                        </div>
+                      </div>
+                      <button 
+                        className="remove-btn"
+                        onClick={() => removeFromQuote(item.id)}
+                        title="Remove item"
+                      >
+                        <FaTrash />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="cart-footer">
+                  <div className="cart-summary">
+                    <div className="total-line">
+                      <span>Total:</span>
+                      <span className="total-amount">${totalAmount.toLocaleString()}</span>
+                    </div>
+                    <button 
+                      className="clear-cart-btn"
+                      onClick={clearCart}
+                    >
+                      Clear All
+                    </button>
+                  </div>
+                  <button 
+                    className="btn btn-primary request-quote-btn"
+                    onClick={() => setShowQuoteForm(true)}
+                  >
+                    <FaPaperPlane /> Request Quote
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Quote Request Form */}
+      {showQuoteForm && (
+        <QuoteRequestForm 
+          cartItems={cartItems}
+          totalAmount={totalAmount}
+          onClose={() => {
+            setShowQuoteForm(false);
+            setIsOpen(false);
+            setCartItems([]);
+          }}
+        />
+      )}
+    </>
+  );
+};
+
+// Quote Request Form Component
+const QuoteRequestForm = ({ cartItems, totalAmount, onClose }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Create quote data
+    const quoteData = {
+      ...formData,
+      items: cartItems,
+      totalAmount,
+      timestamp: new Date().toISOString(),
+      quoteId: 'Q' + Date.now()
+    };
+    
+    // In a real app, you would send this to your backend
+    console.log('Quote Request Submitted:', quoteData);
+    
+    // Show success message
+    alert(`Thank you ${formData.name}! Your quote request has been submitted. We will contact you within 24 hours.`);
+    
+    // Close the form and clear cart
+    onClose();
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  return (
+    <div className="quote-form-overlay">
+      <div className="quote-form-modal">
+        <div className="form-header">
+          <h3>Request Quote</h3>
+          <button className="close-btn" onClick={onClose}>
+            <FaTimes />
+          </button>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="quote-form">
+          <div className="form-grid">
+            <div className="form-group">
+              <label htmlFor="name">Full Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Enter your full name"
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="email">Email Address *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="company">Company / Hospital</label>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                placeholder="Enter company name"
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter phone number"
+              />
+            </div>
+          </div>
+          
+          <div className="form-group full-width">
+            <label htmlFor="message">Additional Requirements</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Any specific requirements, delivery timeline, or questions..."
+            />
+          </div>
+          
+          <div className="quote-summary">
+            <h4>Quote Summary</h4>
+            <div className="quote-items">
+              {cartItems.map(item => (
+                <div key={item.id} className="quote-item">
+                  <div className="item-info">
+                    <span className="item-name">{item.name}</span>
+                    <span className="item-quantity">x {item.quantity}</span>
+                  </div>
+                  <span className="item-total">
+                    ${(item.price * item.quantity).toLocaleString()}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="quote-total">
+              <strong>Total Amount: ${totalAmount.toLocaleString()}</strong>
+            </div>
+          </div>
+          
+          <div className="form-actions">
+            <button type="button" className="btn btn-secondary" onClick={onClose}>
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-primary">
+              <FaPaperPlane /> Submit Quote Request
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default QuoteCart;
+
+// --- ReviewsCarousel.jsx ---
+import React, { useState, useEffect } from 'react';
+import { FaStar, FaQuoteLeft } from 'react-icons/fa';
+
+const ReviewsCarousel = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Configurable reviews data
+  const reviews = [
+    {
+      id: 1,
+      name: 'Dr. Sarah Chen',
+      position: 'Chief Medical Officer',
+      hospital: 'Metropolitan General Hospital',
+      content: 'Their equipment reliability and after-sales support have been exceptional. A trusted partner for our hospital.',
+      rating: 5,
+      image: '👩‍⚕️'
+    },
+    {
+      id: 2,
+      name: 'Robert Kim',
+      position: 'Procurement Manager',
+      hospital: 'Unity Healthcare System',
+      content: 'Competitive pricing and timely delivery. The quality of medical equipment exceeds our expectations.',
+      rating: 5,
+      image: '👨‍💼'
+    },
+    {
+      id: 3,
+      name: 'Dr. Maria Rodriguez',
+      position: 'Head of ICU',
+      hospital: 'City Medical Center',
+      content: 'The technical support team is always available and responsive. Great service experience.',
+      rating: 4,
+      image: '👩‍⚕️'
+    },
+    {
+      id: 4,
+      name: 'Dr. James Wilson',
+      position: 'Surgical Director',
+      hospital: 'Regional Medical Center',
+      content: 'Excellent range of laparoscopic instruments. The quality is consistently high across all products.',
+      rating: 5,
+      image: '👨‍⚕️'
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % reviews.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [reviews.length]);
+
+  return (
+    <section className="section light-bg">
+      <div className="container">
+        <h2 className="section-title">Client Testimonials</h2>
+        <p className="section-subtitle">
+          What healthcare professionals say about our services
+        </p>
+
+        <div className="reviews-carousel">
+          <div 
+            className="carousel-track"
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          >
+            {reviews.map((review) => (
+              <div key={review.id} className="carousel-slide">
+                <div className="testimonial-card card">
+                  <FaQuoteLeft className="quote-icon" />
+                  <p className="testimonial-content">"{review.content}"</p>
+                  <div className="testimonial-author">
+                    <div className="author-avatar">
+                      {review.image}
+                    </div>
+                    <div className="author-info">
+                      <h4>{review.name}</h4>
+                      <p>{review.position}</p>
+                      <p className="hospital">{review.hospital}</p>
+                    </div>
+                  </div>
+                  <div className="rating">
+                    {[...Array(5)].map((_, i) => (
+                      <FaStar 
+                        key={i} 
+                        className={i < review.rating ? 'star filled' : 'star'} 
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="carousel-indicators">
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                className={`indicator ${index === currentSlide ? 'active' : ''}`}
+                onClick={() => setCurrentSlide(index)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ReviewsCarousel;
+
+// --- Solutions.jsx ---
+import React from 'react';
+
+const Solutions = () => {
+  const solutions = [
+    {
+      icon: '🔪',
+      title: 'Surgical Solutions',
+      description: 'Complete range of laparoscopic and surgical instruments for modern operating theaters',
+      features: ['Laparoscopic Instruments', 'Surgical Sets', 'Sterilization Ready', 'Precision Engineered']
+    },
+    {
+      icon: '🏥',
+      title: 'Hospital Equipment',
+      description: 'Full hospital setup and equipment packages for healthcare facilities',
+      features: ['ICU Equipment', 'Operation Theater', 'Patient Monitoring', 'Emergency Care']
+    },
+    {
+      icon: '🩺',
+      title: 'Diagnostic Equipment',
+      description: 'Advanced diagnostic and imaging solutions for accurate medical assessments',
+      features: ['Digital Imaging', 'Portable Options', 'Laboratory Equipment', 'Training Included']
+    }
+  ];
+
+  return (
+    <section id="solutions" className="section solutions-section">
+      <div className="container">
+        <h2 className="section-title">Complete Healthcare Solutions</h2>
+        <p className="section-subtitle">
+          End-to-end medical equipment solutions for hospitals, clinics, and healthcare facilities worldwide
+        </p>
+        
+        <div className="solutions-grid">
+          {solutions.map((solution, index) => (
+            <div key={index} className="solution-card card">
+              <div className="solution-icon">{solution.icon}</div>
+              <h3>{solution.title}</h3>
+              <p>{solution.description}</p>
+              <div className="solution-features">
+                {solution.features.map((feature, i) => (
+                  <span key={i} className="feature-tag">{feature}</span>
+                ))}
+              </div>
+              <a href="#contact" className="solution-link">Learn More →</a>
+            </div>
+          ))}
+        </div>
+
+        {/* Process Steps like PVR Digital */}
+        <div className="process-section">
+          <h3 className="process-title">Our Simple Process</h3>
+          <div className="process-steps">
+            <div className="process-step">
+              <div className="step-number">1</div>
+              <h4>Consultation</h4>
+              <p>Understand your requirements and needs</p>
+            </div>
+            <div className="process-step">
+              <div className="step-number">2</div>
+              <h4>Solution Design</h4>
+              <p>Customized equipment recommendations</p>
+            </div>
+            <div className="process-step">
+              <div className="step-number">3</div>
+              <h4>Delivery & Setup</h4>
+              <p>Installation and staff training</p>
+            </div>
+            <div className="process-step">
+              <div className="step-number">4</div>
+              <h4>Support</h4>
+              <p>Ongoing maintenance and support</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Solutions;
+
+// --- Testimonials.jsx ---
+import React from 'react';
+import { FaQuoteLeft } from 'react-icons/fa';
+
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: 'Dr. Sarah Chen',
+      position: 'Chief Medical Officer',
+      hospital: 'Metropolitan General Hospital',
+      content: 'Their equipment reliability and after-sales support have been exceptional. A trusted partner for our hospital.',
+      rating: 5
+    },
+    {
+      name: 'Robert Kim',
+      position: 'Procurement Manager',
+      hospital: 'Unity Healthcare System',
+      content: 'Competitive pricing and timely delivery. The quality of medical equipment exceeds our expectations.',
+      rating: 5
+    },
+    {
+      name: 'Dr. Maria Rodriguez',
+      position: 'Head of ICU',
+      hospital: 'City Medical Center',
+      content: 'The technical support team is always available and responsive. Great service experience.',
+      rating: 4
+    }
+  ];
+
+  return (
+    <section className="section">
+      <div className="container">
+        <h2 className="section-title">Client Testimonials</h2>
+        <p className="section-subtitle">
+          What healthcare professionals say about our services
+        </p>
+        
+        <div className="testimonials-grid">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="testimonial-card card">
+              <FaQuoteLeft className="quote-icon" />
+              <p className="testimonial-content">"{testimonial.content}"</p>
+              <div className="testimonial-author">
+                <div className="author-info">
+                  <h4>{testimonial.name}</h4>
+                  <p>{testimonial.position}</p>
+                  <p className="hospital">{testimonial.hospital}</p>
+                </div>
+              </div>
+              <div className="rating">
+                {'★'.repeat(testimonial.rating)}{'☆'.repeat(5 - testimonial.rating)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;
+
+// --- VisionMission.jsx ---
+import React from 'react';
+
+const VisionMission = ({ company }) => {
+  // Safe check for company data
+  if (!company || !company.visionMission) {
+    return (
+      <section style={{ padding: '80px 20px', textAlign: 'center', background: '#f7fafc' }}>
+        <div className="container">
+          <h2>Our Vision & Mission</h2>
+          <p>Vision and Mission section - Data loading...</p>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="vision-mission" style={{ padding: '80px 0', background: 'white' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '20px', color: '#1a365d' }}>
+            Our Vision & Mission
+          </h2>
+          <p style={{ fontSize: '1.1rem', color: '#718096', maxWidth: '600px', margin: '0 auto' }}>
+            Driving healthcare excellence through clear purpose and unwavering values
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '40px', marginBottom: '80px' }}>
+          {/* Vision Card */}
+          <div style={{ background: 'white', padding: '50px 40px', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', textAlign: 'center', position: 'relative' }}>
+            <div style={{ fontSize: '3rem', color: '#667eea', marginBottom: '25px' }}>🚀</div>
+            <h3 style={{ fontSize: '1.8rem', fontWeight: '700', marginBottom: '20px', color: '#1a365d' }}>
+              {company.visionMission.vision.title}
+            </h3>
+            <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#718096' }}>
+              {company.visionMission.vision.description}
+            </p>
+          </div>
+
+          {/* Mission Card */}
+          <div style={{ background: 'white', padding: '50px 40px', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', textAlign: 'center', position: 'relative' }}>
+            <div style={{ fontSize: '3rem', color: '#f5576c', marginBottom: '25px' }}>🎯</div>
+            <h3 style={{ fontSize: '1.8rem', fontWeight: '700', marginBottom: '20px', color: '#1a365d' }}>
+              {company.visionMission.mission.title}
+            </h3>
+            <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#718096' }}>
+              {company.visionMission.mission.description}
+            </p>
+          </div>
+        </div>
+
+        {/* Values Section */}
+        <div style={{ textAlign: 'center' }}>
+          <h3 style={{ fontSize: '2.2rem', fontWeight: '700', marginBottom: '50px', color: '#1a365d', position: 'relative' }}>
+            Our Core Values
+          </h3>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
+            {company.visionMission.values.map((value, index) => (
+              <div key={index} style={{ background: 'white', padding: '40px 25px', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', textAlign: 'center' }}>
+                <div style={{ fontSize: '3rem', marginBottom: '20px', height: '80px' }}>{value.icon}</div>
+                <h4 style={{ fontSize: '1.4rem', fontWeight: '600', marginBottom: '15px', color: '#1a365d' }}>{value.title}</h4>
+                <p style={{ color: '#718096', lineHeight: '1.6' }}>{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default VisionMission;
+
+// --- WelcomeMarquee.jsx ---
+import React from 'react';
+import './WelcomeMarquee.css';
+
+const WelcomeMarquee = () => {
+  const messages = [
+    "🏥 Welcome to MedEquip Pro - Your Trusted Medical Equipment Partner",
+    "⭐ Premium Quality Medical Equipment with 15+ Years Experience", 
+    "🏆 Trusted by 500+ Hospitals & Healthcare Facilities Worldwide",
+    "🔒 ISO Certified • FDA Approved • Quality Guaranteed",
+    "🚚 Fast Delivery • Installation Support • 24/7 Customer Service"
+  ];
+
+  return (
+    <div className="welcome-marquee">
+      <div className="marquee-content">
+        {messages.map((message, index) => (
+          <span key={index} className="marquee-item">
+            {message} &nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;
+          </span>
+        ))}
+        {/* Duplicate for seamless loop */}
+        {messages.map((message, index) => (
+          <span key={`dup-${index}`} className="marquee-item">
+            {message} &nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default WelcomeMarquee;
+
+// --- WhatsAppButton.jsx ---
+import React from 'react';
+import { FaWhatsapp } from 'react-icons/fa';
+import { companyConfig } from '../config/company';
+
+const WhatsAppButton = () => {
+  const handleWhatsAppClick = () => {
+    // Multiple phone number cleaning methods
+    // let phoneNumber = companyConfig.contact.whatsapp;
+    let phoneNumber = '+917550087406'; // Replace with actual number for testing
+    
+    // Method 1: Remove all non-digit characters
+    // phoneNumber = phoneNumber.replace(/\D/g, '');
+    
+    // Method 2: If number starts with +, keep it, otherwise add country code
+    // if (!phoneNumber.startsWith('+')) {
+    //   // Assuming US number, adjust country code as needed
+    //   phoneNumber = '1' + phoneNumber; // US country code
+    // }
+    
+    // Method 3: For testing, you can use a known working number
+    // phoneNumber = '15551234567'; // Test number
+    
+    const message = encodeURIComponent(
+      `Hello Aruvi Medical Systems! 👋\n\nI visited your website and I'm interested in your medical equipment. Could you please provide me with more information?`
+    );
+    
+    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+    
+    console.log('WhatsApp URL:', url); // For debugging
+    
+    // Try multiple methods to open
+    try {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } catch (error) {
+      console.error('Error opening WhatsApp:', error);
+      // Fallback: direct link
+      window.location.href = url;
+    }
+  };
+
+  return (
+    <div 
+      className="whatsapp-float" 
+      onClick={handleWhatsAppClick}
+      style={{ cursor: 'pointer' }}
+      title="Chat with us on WhatsApp"
+    >
+      <FaWhatsapp />
+    </div>
+  );
+};
+
+export default WhatsAppButton;

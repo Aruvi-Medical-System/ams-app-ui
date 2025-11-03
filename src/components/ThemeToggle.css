@@ -1,0 +1,80 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 2px solid var(--border-light);
+  border-radius: 25px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary-red);
+  transform: scale(1.05);
+}
+
+.toggle-track {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: var(--border-light);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle.dark .toggle-track {
+  background: var(--primary-red);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 0.7rem;
+  color: var(--dark-black);
+}
+
+.theme-toggle.dark .toggle-thumb {
+  left: 22px;
+  background: var(--white);
+}
+
+.toggle-label {
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .theme-toggle {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .toggle-track {
+    width: 35px;
+    height: 18px;
+  }
+  
+  .toggle-thumb {
+    width: 14px;
+    height: 14px;
+    font-size: 0.6rem;
+  }
+  
+  .theme-toggle.dark .toggle-thumb {
+    left: 19px;
+  }
+}

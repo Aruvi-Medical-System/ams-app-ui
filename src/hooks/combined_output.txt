@@ -1,0 +1,239 @@
+
+// --- useAdvancedAnimations.js ---
+import { useEffect, useRef } from 'react';
+
+export const useAdvancedAnimations = () => {
+  useEffect(() => {
+    // Advanced scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add different animation classes based on data attributes
+          const animationType = entry.target.getAttribute('data-animation') || 'fadeIn';
+          const delay = entry.target.getAttribute('data-delay') || 0;
+          
+          setTimeout(() => {
+            entry.target.classList.add('animate-in', animationType);
+            
+            // Animate children with staggered delays
+            const staggerItems = entry.target.querySelectorAll('.stagger-item');
+            staggerItems.forEach((item, index) => {
+              const itemDelay = index * 100;
+              setTimeout(() => {
+                item.classList.add('animate-in');
+              }, parseInt(delay) + itemDelay);
+            });
+          }, parseInt(delay));
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with animation attributes
+    const animatedElements = document.querySelectorAll(
+      '[data-animation], .animate-on-scroll'
+    );
+    
+    animatedElements.forEach(el => observer.observe(el));
+
+    return () => animatedElements.forEach(el => observer.unobserve(el));
+  }, []);
+};
+
+// Parallax effect hook
+export const useParallax = (speed = 0.5) => {
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (elementRef.current) {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * speed;
+        elementRef.current.style.transform = `translateY(${rate}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [speed]);
+
+  return elementRef;
+};
+
+// Text reveal animation hook
+export const useTextReveal = () => {
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('text-revealed');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    if (textRef.current) {
+      observer.observe(textRef.current);
+    }
+
+    return () => {
+      if (textRef.current) {
+        observer.unobserve(textRef.current);
+      }
+    };
+  }, []);
+
+  return textRef;
+};
+
+// --- useIntersectionObserver.js ---
+import { useState, useEffect, useRef } from 'react';
+
+export const useIntersectionObserver = (options = {}) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsIntersecting(entry.isIntersecting);
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px',
+      ...options
+    });
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, [options]);
+
+  return [elementRef, isIntersecting];
+};
+
+// --- useParallax.js ---
+import { useEffect, useRef } from 'react';
+
+export const useParallax = (speed = 0.5) => {
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (elementRef.current) {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * speed;
+        elementRef.current.style.transform = `translateY(${rate}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [speed]);
+
+  return elementRef;
+};
+
+// --- useScrollAnimation.js ---
+import { useEffect } from 'react';
+
+export const useScrollAnimation = () => {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add visible class with delay based on data-delay attribute
+          const delay = entry.target.getAttribute('data-delay') || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+            
+            // Animate children with staggered delay
+            const children = entry.target.querySelectorAll('.stagger-item');
+            children.forEach((child, index) => {
+              child.style.setProperty('--stagger-delay', `${index * 0.1}s`);
+              child.classList.add('animate-in');
+            });
+          }, parseInt(delay));
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animatable elements
+    const elements = document.querySelectorAll(
+      '.fade-in, .slide-in-left, .slide-in-right, .stagger-children, .section, .parallax'
+    );
+    
+    elements.forEach(el => observer.observe(el));
+
+    return () => elements.forEach(el => observer.unobserve(el));
+  }, []);
+};
+
+// --- useSmoothScroll.js ---
+import { useEffect } from 'react';
+
+export const useSmoothScroll = () => {
+  useEffect(() => {
+    // Remove default smooth scroll
+    document.documentElement.style.scrollBehavior = 'auto';
+
+    // Custom smooth scroll function
+    const smoothScroll = (target, duration = 1000) => {
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      let startTime = null;
+
+      const animation = (currentTime) => {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      };
+
+      // Easing function
+      const easeInOutQuad = (t, b, c, d) => {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      };
+
+      requestAnimationFrame(animation);
+    };
+
+    // Add smooth scroll to all anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) {
+          smoothScroll(target, 1200);
+        }
+      });
+    });
+
+    return () => {
+      anchorLinks.forEach(link => {
+        link.removeEventListener('click', smoothScroll);
+      });
+    };
+  }, []);
+};

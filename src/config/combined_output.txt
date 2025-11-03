@@ -1,0 +1,446 @@
+
+// --- company.js ---
+// All company information - easily customizable
+export const companyConfig = {
+  // Basic Company Info
+  name:"Aruvi Medical Systems",
+  legalName: "Aruvi Medical Systems Pvt. Ltd.",
+  tagline: "Your Trusted Partner in Healthcare Solutions",
+  logo: {
+    text: "logo.png", // or use image path: "/logo.png"
+    type: "image" // or "text"
+  },
+  
+  // Contact Information
+  contact: {
+    phone: {
+      primary: "+91 63855 86669"
+    },
+    email: {
+      primary: "aruvimedicalsystem76@gmail.com",
+    },
+    address: {
+      headOffice: "F2,sdbc Udhayam apartment,Jaswant’s nagar phase II, 2 nd street,Mogappair West,Chennai-600037",
+    }
+  },
+
+  // Social Media Links
+  social: {
+    facebook: "https://facebook.com/aruvimedicalsystems",
+    twitter: "https://twitter.com/aruvimedicalsystems",
+    linkedin: "https://linkedin.com/company/aruvimedicalsystems",
+    instagram: "https://instagram.com/aruvimedicalsystems"
+  },
+
+  // Business Hours
+  businessHours: {
+    weekdays: "9:00 AM - 6:00 PM",
+    saturday: "10:00 AM - 4:00 PM",
+    sunday: "Closed"
+  },
+
+  // Company Stats (easily updatable)
+  stats: {
+    yearsExperience: "15+",
+    countriesServed: "50+",
+    healthcarePartners: "500+",
+    productsAvailable: "1000+"
+  },
+
+  // Certifications & Accreditations
+  certifications: [
+    {
+      name: "ISO 13485:2016",
+      description: "Medical Devices Quality Management"
+    },
+    {
+      name: "ISO 9001:2015", 
+      description: "Quality Management Systems"
+    },
+    {
+      name: "CE Marking",
+      description: "European Conformity"
+    },
+    {
+      name: "FDA Registered",
+      description: "US Food and Drug Administration"
+    }
+  ],
+
+  // Partner Hospitals (configurable)
+  partnerHospitals: [
+    { name: "Metropolitan General Hospital", logo: "🏥" },
+    { name: "Unity Healthcare System", logo: "⚕️" },
+    { name: "City Medical Center", logo: "🏨" },
+    { name: "Regional Clinic Network", logo: "🩺" },
+    { name: "National Health Partners", logo: "🌐" },
+    { name: "Prime Care Alliance", logo: "⭐" }
+  ],
+
+  // Features Highlight
+  features: [
+    {
+      icon: "🏥",
+      title: "Hospital Grade Equipment",
+      description: "Medical-grade equipment meeting international standards"
+    },
+    {
+      icon: "🚚",
+      title: "Fast Delivery",
+      description: "Quick and reliable shipping across the country"
+    },
+    {
+      icon: "🔧", 
+      title: "24/7 Support",
+      description: "Round-the-clock technical support and maintenance"
+    },
+    {
+      icon: "💰",
+      title: "Competitive Pricing",
+      description: "Best prices for bulk orders and long-term partnerships"
+    }
+  ],
+  visionMission: {
+    vision: {
+      title: "Our Vision",
+      description: "To be the most trusted Tamil Nadu distributor of precision surgical instruments, empowering healthcare professionals with reliable tools that ensure excellence in every procedure"
+    },
+    mission: {
+      title: "Our Mission", 
+      description: "Our mission is to be a trusted partner to healthcare institutions by offering timely distribution of cutting-edge medical equipment, backed by exceptional customer service, technical expertise, and ongoing support."
+    },
+    values: [
+      {
+        icon: "🎯",
+        title: "Excellence",
+        description: "Commitment to highest quality standards in everything we do"
+      },
+      {
+        icon: "🤝",
+        title: "Integrity",
+        description: "Building trust through transparency and ethical practices"
+      },
+      {
+        icon: "💡", 
+        title: "Innovation",
+        description: "Continuously evolving to meet healthcare's changing needs"
+      },
+      {
+        icon: "❤️",
+        title: "Care",
+        description: "Putting patient well-being at the heart of our operations"
+      }
+    ]
+  }
+};
+
+export default companyConfig;
+
+// --- products.js ---
+// Product categories
+export const productCategories = [
+  {
+    id: 'laparoscopic',
+    name: 'Laparoscopic Instruments',
+    icon: '🔪',
+    description: 'Precision laparoscopic tools and equipment'
+  },
+  {
+    id: 'surgical', 
+    name: 'Surgical Instruments',
+    icon: '🩺',
+    description: 'Comprehensive range of surgical tools'
+  },
+  {
+    id: 'disposable',
+    name: 'Disposable Products',
+    icon: '📦',
+    description: 'Single-use medical devices and trocars'
+  },
+  {
+    id: 'accessories',
+    name: 'Accessories & Retractors', 
+    icon: '🔧',
+    description: 'Medical accessories and retraction systems'
+  }
+];
+
+// Complete product catalog with image placeholders
+export const allProducts = [
+  // Laparoscopic Instruments
+  {
+    id: 1,
+    name: 'GRASPER MARRY LAND',
+    category: 'laparoscopic',
+    variants: ['SMALL 5MM', 'MEDIUM 5MM', 'LARGE 5MM'],
+    price: 450,
+    description: 'Precision Maryland grasper for laparoscopic procedures',
+    features: ['5mm diameter', 'Precision jaws', 'Comfort grip'],
+    image: '/images/products/grasper-maryland.jpg',
+    inStock: true,
+    isFeatured: true
+  },
+  {
+    id: 2,
+    name: 'SCISSORS METABONISUM (CURVED)',
+    category: 'laparoscopic', 
+    price: 520,
+    description: 'Curved metabonium scissors for precise cutting',
+    features: ['5mm diameter', 'Curved design', 'Sharp blades'],
+    image: '/images/products/scissors-metabonium.jpg',
+    inStock: true,
+    isFeatured: true
+  },
+  {
+    id: 3,
+    name: 'PLAIN GRASPER',
+    category: 'laparoscopic',
+    price: 380,
+    description: 'Standard plain grasper for general use',
+    features: ['5mm diameter', 'Smooth jaws', 'Reliable grip'],
+    image: '/images/products/plain-grasper.jpg',
+    inStock: true
+  },
+  {
+    id: 4,
+    name: 'UNIVERSAL OR MAXIGRIP GRASPER',
+    category: 'laparoscopic',
+    price: 480,
+    description: 'Universal grasper with maxigrip technology',
+    features: ['5mm diameter', 'Enhanced grip', 'Multi-purpose'],
+    image: '/images/products/universal-grasper.jpg',
+    inStock: true,
+    isFeatured: true
+  },
+  {
+    id: 5,
+    name: 'BABCOCK GRASPER',
+    category: 'laparoscopic',
+    variants: ['LONG 5MM', 'SHORT 5MM'],
+    price: 420,
+    description: 'Babcock grasper for delicate tissue handling',
+    features: ['5mm diameter', 'Atraumatic jaws', 'Precision control'],
+    image: '/images/products/babcock-grasper.jpg',
+    inStock: true
+  },
+  {
+    id: 6,
+    name: 'BOWEL GRASPER',
+    category: 'laparoscopic',
+    variants: ['SMALL 5MM', 'MEDIUM 5MM', 'LARGE 5MM'],
+    price: 460,
+    description: 'Specialized bowel grasper for gastrointestinal procedures',
+    features: ['5mm diameter', 'Gentle grip', 'Various sizes'],
+    image: '/images/products/bowel-grasper.jpg',
+    inStock: true
+  },
+  {
+    id: 7,
+    name: '2X3 CLAW FORCEPS',
+    category: 'laparoscopic',
+    price: 390,
+    description: '2x3 claw forceps for secure tissue holding',
+    features: ['5mm diameter', 'Claw design', 'Secure grip'],
+    image: '/images/products/claw-forceps.jpg',
+    inStock: true
+  },
+  {
+    id: 8, 
+    name: '2X4 GRASPER',
+    category: 'laparoscopic',
+    price: 410,
+    description: '2x4 grasper for enhanced holding capacity',
+    features: ['5mm diameter', 'Enhanced jaws', 'Reliable performance'],
+    image: '/images/products/2x4-grasper.jpg',
+    inStock: true
+  },
+  {
+    id: 9,
+    name: 'ALLIGATOR GRASPER',
+    category: 'laparoscopic',
+    price: 490,
+    description: 'Alligator grasper for difficult-to-reach areas',
+    features: ['5mm diameter', 'Articulating jaws', 'Extended reach'],
+    image: '/images/products/alligator-grasper.jpg',
+    inStock: true,
+    isFeatured: true
+  },
+
+  // Surgical Instruments
+  {
+    id: 10,
+    name: 'CLIP APPLICATOR',
+    category: 'surgical',
+    variants: ['10MM 3-IN-1', 'SMALL JAW'],
+    price: 1200,
+    description: 'Advanced clip applicator for surgical procedures',
+    features: ['Multiple clip sizes', 'Easy loading', 'Precision application'],
+    image: '/images/products/clip-applicator.jpg',
+    inStock: true,
+    isFeatured: true
+  },
+  {
+    id: 11,
+    name: 'HEMOLOCK APPLICATOR',
+    category: 'surgical',
+    price: 950,
+    description: 'Hemolock applicator for secure vessel closure',
+    features: ['10mm diameter', 'Secure locking', 'Easy to use'],
+    image: '/images/products/hemolock.jpg',
+    inStock: true
+  },
+
+  // Disposable Products
+  {
+    id: 12,
+    name: 'DISPOSABLE TROCAR',
+    category: 'disposable', 
+    variants: ['5MM', '10MM'],
+    price: 85,
+    description: 'Single-use disposable trocar for safety',
+    features: ['Sterile packed', 'Safety shield', 'Sharp blade'],
+    image: '/images/products/disposable-trocar.jpg',
+    inStock: true,
+    isFeatured: true
+  },
+  {
+    id: 13,
+    name: 'VERESS NEEDLE',
+    category: 'disposable',
+    variants: ['100MM', '120MM', '140MM'],
+    price: 45,
+    description: 'Veress needle for safe pneumoperitoneum',
+    features: ['Safety spring', 'Sharp tip', 'Various lengths'],
+    image: '/images/products/veress-needle.jpg',
+    inStock: true
+  },
+
+  // Accessories
+  {
+    id: 14,
+    name: 'PORT CLOSER',
+    category: 'accessories',
+    price: 320,
+    description: 'Port closure device for trocar sites',
+    features: ['Easy to use', 'Secure closure', 'Reusable'],
+    image: '/images/products/port-closer.jpg',
+    inStock: true
+  },
+  {
+    id: 15,
+    name: 'LIVER RETRACTOR',
+    category: 'accessories',
+    variants: ['5MM', '10MM'],
+    price: 580,
+    description: 'Snack-type liver retractor for surgical procedures',
+    features: ['Adjustable', 'Secure hold', 'Various sizes'],
+    image: '/images/products/liver-retractor.jpg',
+    inStock: true
+  }
+];
+
+// Featured products (subset of all products)
+export const featuredProducts = allProducts.filter(product => product.isFeatured);
+
+export default {
+  categories: productCategories,
+  featured: featuredProducts,
+  all: allProducts
+};
+
+// --- settings.js ---
+// // App settings and configuration
+// export const appSettings = {
+//   // API Configuration (will be used when backend is ready)
+//   api: {
+//     baseURL: process.env.NODE_ENV === 'production' 
+//       ? 'https://your-backend-url.herokuapp.com/api' 
+//       : 'http://localhost:5000/api',
+//     timeout: 10000
+//   },
+
+//   // UI/UX Settings
+//   ui: {
+//     theme: {
+//       primaryColor: '#1a365d',
+//       secondaryColor: '#2d3748', 
+//       accentColor: '#3182ce',
+//       medicalGreen: '#38a169',
+//       lightBg: '#f7fafc'
+//     },
+//     animations: {
+//       enable: true,
+//       duration: 300
+//     }
+//   },
+
+//   // Features Flags
+//   features: {
+//     auth: false, // Will enable when backend is ready
+//     search: true,
+//     quotes: true,
+//     liveChat: false // Can integrate with free services like Tawk.to later
+//   },
+
+//   // Free Services Configuration
+//   freeServices: {
+//     email: {
+//       // Can use free tier of EmailJS or similar
+//       service: 'emailjs',
+//       templateId: 'your_template_id'
+//     },
+//     analytics: {
+//       // Google Analytics or similar
+//       enabled: true,
+//       trackingId: 'your_tracking_id'
+//     }
+//   }
+// };
+
+// export default appSettings;
+
+// App settings and configuration
+export const appSettings = {
+  // Global Theme Colors (You can update these later with your logo colors)
+  theme: {
+    // primary: '#1a365d',       // Dark Blue
+    primary: '#ef1c22',
+    secondary: '#94c23c',     // Medium Blue  
+    accent: '#3182ce',        // Light Blue
+    medical: '#38a169',       // Medical Green
+    light: '#f7fafc',         // Light Background
+    white: '#ffffff',
+    text: {
+      dark: '#2d3748',
+      light: '#718096'
+    }
+  },
+
+  // Animation Settings
+  animations: {
+    smoothScroll: true,
+    fadeIn: true,
+    stagger: true,
+    duration: {
+      fast: '0.3s',
+      normal: '0.5s', 
+      slow: '0.8s'
+    }
+  },
+
+  // Features
+  features: {
+    whatsapp: true,
+    imageGallery: true,
+    productSearch: true,
+    reviewsCarousel: true
+  },
+
+  // WhatsApp Configuration
+  whatsapp: {
+    number: '7550087406', // Replace with your number
+    message: 'Hello! I need information about medical equipment.'
+  }
+};
+
+export default appSettings;

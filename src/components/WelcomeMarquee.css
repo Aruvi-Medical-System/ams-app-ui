@@ -1,0 +1,78 @@
+/* src/components/WelcomeMarquee.css */
+
+.welcome-marquee {
+  background: linear-gradient(135deg, var(--dark-black) 0%, var(--primary-red) 100%);
+  color: var(--white);
+  padding: 12px 0;
+  overflow: hidden;
+  position: relative;
+  font-weight: 600;
+  z-index: 1001;
+  width: 100%;
+  /* margin-top is now controlled by App.css */
+}
+
+.marquee-content {
+  display: inline-flex;
+  animation: marqueeScroll 30s linear infinite;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 30px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+/* Pause animation on hover */
+.welcome-marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Marquee Icons */
+.marquee-item::before {
+  content: '✓';
+  margin-right: 8px;
+  font-weight: bold;
+  color: var(--accent-red);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .welcome-marquee {
+    padding: 10px 0;
+  }
+  
+  .marquee-item {
+    padding: 0 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-marquee {
+    padding: 8px 0;
+  }
+  
+  .marquee-item {
+    padding: 0 15px;
+    font-size: 0.8rem;
+  }
+  
+  .marquee-content {
+    animation-duration: 25s;
+  }
+}

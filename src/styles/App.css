@@ -1,0 +1,731 @@
+/* src/styles/App.css - OPTIMIZED VERSION */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  /* Colors */
+  --primary-blue: #971111;
+  --secondary-blue: #000000;
+  --accent-blue: #16293b;
+  --medical-green: #000000;
+  --light-bg: #f7fafc;
+  --white: #ffffff;
+  --text-dark: #2d3748;
+  --text-light: #718096;
+  --border-light: #e2e8f0;
+  
+  /* Animation Durations */
+  --duration-fast: 0.3s;
+  --duration-normal: 0.5s;
+  --duration-slow: 0.8s;
+}
+
+/* ===== DARK MODE VARIABLES ===== */
+:root {
+  /* Light Mode (Default) - Red & Black Theme */
+  --primary-red: #dc2626;
+  --secondary-red: #ef4444;
+  --accent-red: #f87171;
+  --dark-black: #000000;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --light-bg: #f8fafc;
+  --white: #ffffff;
+  --border-light: #e5e7eb;
+  --card-bg: #ffffff;
+  --header-bg: #ffffff;
+  --footer-bg: #000000;
+  --hero-bg: linear-gradient(135deg, #000000 0%, #dc2626 100%);
+}
+.dark-mode {
+  /* Dark Mode - Red & Dark Theme */
+  --primary-red: #ef4444;
+  --secondary-red: #f87171;
+  --accent-red: #fca5a5;
+  --dark-black: #000000;
+  --text-dark: #f9fafb;
+  --text-light: #d1d5db;
+  --light-bg: #111827;
+  --white: #1f2937;
+  --border-light: #374151;
+  --card-bg: #1f2937;
+  --header-bg: #111827;
+  --footer-bg: #000000;
+  --hero-bg: linear-gradient(135deg, #000000 0%, #7f1d1d 100%);
+}
+
+/* ===== DARK MODE STYLES ===== */
+.dark-mode body {
+  background-color: var(--light-bg);
+  color: var(--text-dark);
+}
+
+.dark-mode .header {
+  background: var(--header-bg);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .main-nav.sticky {
+  background: var(--header-bg);
+}
+
+.dark-mode .card {
+  background: var(--card-bg);
+  border-color: var(--border-light);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .section.light-bg {
+  background: var(--light-bg);
+}
+
+.dark-mode .footer {
+  background: var(--footer-bg);
+}
+
+.dark-mode .search-box {
+  background: var(--card-bg);
+}
+
+.dark-mode .search-box input {
+  background: transparent;
+  color: var(--text-dark);
+}
+
+.dark-mode .form-group input,
+.dark-mode .form-group textarea {
+  background: var(--card-bg);
+  border-color: var(--border-light);
+  color: var(--text-dark);
+}
+
+.dark-mode .form-group input:focus,
+.dark-mode .form-group textarea:focus {
+  border-color: var(--primary-red);
+}
+
+.dark-mode .business-hours {
+  background: var(--card-bg);
+}
+
+.dark-mode .standard-item {
+  background: var(--card-bg);
+  border-color: var(--border-light);
+}
+
+.dark-mode .feature-tag {
+  background: var(--light-bg);
+  border-color: var(--border-light);
+  color: var(--text-light);
+}
+
+.dark-mode .modal-benefits {
+  background: var(--light-bg);
+  border-color: var(--border-light);
+}
+
+.dark-mode .benefit-item {
+  color: var(--text-dark);
+}
+
+.dark-mode .quality-standards {
+  background: var(--card-bg);
+}
+
+.dark-mode .contact-form {
+  background: var(--card-bg);
+}
+
+.dark-mode .lead-modal {
+  background: var(--card-bg);
+}
+
+.dark-mode .lead-form input,
+.dark-mode .lead-form textarea {
+  background: var(--light-bg);
+  border-color: var(--border-light);
+  color: var(--text-dark);
+}
+
+.dark-mode .map-wrapper {
+  filter: brightness(0.8);
+}
+
+/* Scrollbar for dark mode */
+.dark-mode ::-webkit-scrollbar-track {
+  background: var(--light-bg);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-red), var(--dark-black));
+}
+
+/* Animation fixes for dark mode */
+.dark-mode [data-animation] {
+  color: inherit;
+}
+
+/* ===== RESET & BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--white);
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== GLOBAL UTILITY CLASSES ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--primary-blue);
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* ===== BUTTON STYLES ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(49, 130, 206, 0.3);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-blue);
+  color: var(--white);
+}
+
+/* ===== CARD STYLES ===== */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all var(--duration-normal) ease;
+  border: 1px solid var(--border-light);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== LAYOUT UTILITIES ===== */
+.light-bg {
+  background: var(--light-bg);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--accent-blue), var(--medical-green));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 50px 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .btn {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== COMPREHENSIVE SCROLL ANIMATIONS ===== */
+:root {
+  --animation-duration: 800ms;
+}
+
+[data-animation] {
+  opacity: 0;
+  transition: all var(--animation-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-in {
+  opacity: 1;
+}
+
+/* === FADE ANIMATIONS === */
+[data-animation="fadeInUp"] {
+  transform: translateY(80px);
+}
+
+[data-animation="fadeInUp"].animate-in {
+  transform: translateY(0);
+}
+
+[data-animation="fadeInDown"] {
+  transform: translateY(-80px);
+}
+
+[data-animation="fadeInDown"].animate-in {
+  transform: translateY(0);
+}
+
+[data-animation="fadeInLeft"] {
+  transform: translateX(-100px);
+}
+
+[data-animation="fadeInLeft"].animate-in {
+  transform: translateX(0);
+}
+
+[data-animation="fadeInRight"] {
+  transform: translateX(100px);
+}
+
+[data-animation="fadeInRight"].animate-in {
+  transform: translateX(0);
+}
+
+/* === ZOOM ANIMATIONS === */
+[data-animation="zoomIn"] {
+  transform: scale(0.5);
+}
+
+[data-animation="zoomIn"].animate-in {
+  transform: scale(1);
+}
+
+[data-animation="zoomInUp"] {
+  transform: scale(0.5) translateY(100px);
+}
+
+[data-animation="zoomInUp"].animate-in {
+  transform: scale(1) translateY(0);
+}
+
+[data-animation="zoomInDown"] {
+  transform: scale(0.5) translateY(-100px);
+}
+
+[data-animation="zoomInDown"].animate-in {
+  transform: scale(1) translateY(0);
+}
+
+/* === SLIDE ANIMATIONS === */
+[data-animation="slideInUp"] {
+  transform: translateY(100%);
+}
+
+[data-animation="slideInUp"].animate-in {
+  transform: translateY(0);
+}
+
+[data-animation="slideInDown"] {
+  transform: translateY(-100%);
+}
+
+[data-animation="slideInDown"].animate-in {
+  transform: translateY(0);
+}
+
+[data-animation="slideInLeft"] {
+  transform: translateX(-100%);
+}
+
+[data-animation="slideInLeft"].animate-in {
+  transform: translateX(0);
+}
+
+[data-animation="slideInRight"] {
+  transform: translateX(100%);
+}
+
+[data-animation="slideInRight"].animate-in {
+  transform: translateX(0);
+}
+
+/* === FLIP ANIMATIONS === */
+[data-animation="flipInX"] {
+  transform: perspective(1000px) rotateX(90deg);
+  transform-origin: top;
+}
+
+[data-animation="flipInX"].animate-in {
+  transform: perspective(1000px) rotateX(0);
+}
+
+[data-animation="flipInY"] {
+  transform: perspective(1000px) rotateY(90deg);
+  transform-origin: left;
+}
+
+[data-animation="flipInY"].animate-in {
+  transform: perspective(1000px) rotateY(0);
+}
+
+[data-animation="flipIn"] {
+  transform: perspective(1000px) rotateY(90deg) scale(0.8);
+  transform-origin: center;
+}
+
+[data-animation="flipIn"].animate-in {
+  transform: perspective(1000px) rotateY(0) scale(1);
+}
+
+/* === BOUNCE ANIMATIONS === */
+[data-animation="bounceIn"] {
+  transform: scale(0.3);
+  opacity: 0;
+}
+
+[data-animation="bounceIn"].animate-in {
+  animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 1; }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+[data-animation="bounceInUp"] {
+  transform: translateY(500px);
+}
+
+[data-animation="bounceInUp"].animate-in {
+  animation: bounceInUp 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes bounceInUp {
+  0% { transform: translateY(500px); opacity: 0; }
+  60% { transform: translateY(-20px); opacity: 1; }
+  80% { transform: translateY(10px); }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* === ROTATE ANIMATIONS === */
+[data-animation="rotateIn"] {
+  transform: rotate(-180deg) scale(0.5);
+}
+
+[data-animation="rotateIn"].animate-in {
+  transform: rotate(0) scale(1);
+}
+
+[data-animation="rotateInUpLeft"] {
+  transform: rotate(45deg) translateY(100px);
+  transform-origin: left bottom;
+}
+
+[data-animation="rotateInUpLeft"].animate-in {
+  transform: rotate(0) translateY(0);
+}
+
+[data-animation="rotateInUpRight"] {
+  transform: rotate(-45deg) translateY(100px);
+  transform-origin: right bottom;
+}
+
+[data-animation="rotateInUpRight"].animate-in {
+  transform: rotate(0) translateY(0);
+}
+
+/* === SPECIAL EFFECTS === */
+[data-animation="pulseIn"] {
+  transform: scale(0.5);
+  opacity: 0;
+}
+
+[data-animation="pulseIn"].animate-in {
+  animation: pulseIn 1s ease-out forwards;
+}
+
+@keyframes pulseIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+[data-animation="lightSpeedIn"] {
+  transform: translateX(100%) skewX(-30deg);
+  opacity: 0;
+}
+
+[data-animation="lightSpeedIn"].animate-in {
+  animation: lightSpeedIn 1s ease-out forwards;
+}
+
+@keyframes lightSpeedIn {
+  0% { transform: translateX(100%) skewX(-30deg); opacity: 0; }
+  60% { transform: translateX(-20%) skewX(30deg); opacity: 1; }
+  80% { transform: translateX(0%) skewX(-15deg); opacity: 1; }
+  100% { transform: translateX(0%) skewX(0deg); opacity: 1; }
+}
+
+[data-animation="rollIn"] {
+  transform: translateX(-100%) rotate(-120deg);
+  opacity: 0;
+}
+
+[data-animation="rollIn"].animate-in {
+  animation: rollIn 1s ease-out forwards;
+}
+
+@keyframes rollIn {
+  0% { transform: translateX(-100%) rotate(-120deg); opacity: 0; }
+  100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+}
+
+/* === FLIP CARD ANIMATIONS === */
+.flip-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* === TYPEWRITER EFFECT === */
+.typewriter-text {
+  overflow: hidden;
+  border-right: 3px solid var(--accent-blue);
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--accent-blue) }
+}
+
+/* === STAGGER ANIMATIONS === */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.stagger-item.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === PARALLAX EFFECTS === */
+.parallax-element {
+  will-change: transform;
+}
+
+/* === GLOW EFFECTS === */
+.glow-on-scroll {
+  opacity: 0;
+  filter: blur(10px);
+  transition: all 0.8s ease-out;
+}
+
+.glow-on-scroll.animate-in {
+  opacity: 1;
+  filter: blur(0);
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { box-shadow: 0 0 20px rgba(49, 130, 206, 0.3); }
+  to { box-shadow: 0 0 30px rgba(49, 130, 206, 0.6); }
+}
+
+/* === WAVE ANIMATION === */
+.wave-animation {
+  opacity: 0;
+  transform: translateY(50px) scale(0.8);
+}
+
+.wave-animation.animate-in {
+  animation: waveRise 1s ease-out forwards;
+}
+
+@keyframes waveRise {
+  0% { transform: translateY(50px) scale(0.8); opacity: 0; }
+  60% { transform: translateY(-10px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ===== EMERGENCY FIX FOR HEADER & MARQUEE ===== */
+
+/* Reset body margin and padding */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.App {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Header fixed positioning */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1002;
+  background: var(--white);
+}
+
+/* Calculate total header height and apply padding to marquee */
+.header .top-bar {
+  height: 40px; /* Adjust based on your actual height */
+}
+
+.header .main-nav {
+  height: 70px; /* Adjust based on your actual height */
+}
+
+/* Total header height = top-bar + main-nav = ~110px */
+.welcome-marquee {
+  position: relative;
+  z-index: 1001;
+  margin-top: 110px; /* This should match total header height */
+  width: 100%;
+}
+
+/* For scrolled state when top-bar disappears */
+.header.scrolled .main-nav {
+  height: 70px; /* Same as regular main-nav height */
+}
+
+.header.scrolled ~ .welcome-marquee {
+  margin-top: 70px; /* Adjust for scrolled state */
+}
+
+/* Ensure hero starts after marquee */
+.enhanced-hero {
+  position: relative;
+  z-index: 1;
+}

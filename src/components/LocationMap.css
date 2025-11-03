@@ -1,0 +1,51 @@
+/* src/components/LocationMap.css */
+
+/* Location Section */
+.location-section {
+  background: linear-gradient(135deg, var(--light-bg) 0%, #f8fafc 100%);
+}
+
+/* Full Width Map Container */
+.map-container-full {
+  position: relative;
+  margin-top: 40px;
+}
+
+.map-wrapper-full {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.map-wrapper-full:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.location-map-full {
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.map-wrapper-full:hover .location-map-full {
+  transform: scale(1.01);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .map-container-full {
+    margin-top: 30px;
+  }
+  
+  .location-map-full {
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .location-map-full {
+    height: 300px;
+  }
+}
