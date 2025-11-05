@@ -1,7 +1,7 @@
-// src/components/ProductSearchFilter.jsx
 import React, { useState, useMemo } from 'react';
-import { FaSearch, FaFilter, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaFilter, FaTimes, FaSlidersH } from 'react-icons/fa';
 import { allProducts, productCategories } from '../config/products';
+import './ProductSearchFilter.css';
 
 const ProductSearchFilter = ({ onFilterChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -46,27 +46,28 @@ const ProductSearchFilter = ({ onFilterChange }) => {
   return (
     <div className="product-search-filter">
       <div className="search-filter-header">
-        <div className="search-box">
+        <div className="search-container">
           <FaSearch className="search-icon" />
           <input
             type="text"
-            placeholder="Search medical equipment..."
+            placeholder="Search medical equipment, instruments, devices..."
             value={searchTerm}
             onChange={handleSearch}
+            className="search-input"
           />
         </div>
         <button 
-          className="filter-toggle"
+          className={`filter-toggle ${showFilters ? 'active' : ''}`}
           onClick={() => setShowFilters(!showFilters)}
         >
-          <FaFilter /> Filters
+          <FaSlidersH /> Filters
         </button>
       </div>
 
       {showFilters && (
         <div className="filter-panel">
           <div className="filter-section">
-            <h4>Category</h4>
+            <h4>Categories</h4>
             <div className="category-filters">
               {categories.map(category => (
                 <button
@@ -84,8 +85,11 @@ const ProductSearchFilter = ({ onFilterChange }) => {
           </div>
 
           <div className="filter-section">
-            <h4>Price Range: ${priceRange[0]} - ${priceRange[1]}</h4>
-            <div className="price-slider">
+            <h4>Price Range</h4>
+            <div className="price-range-display">
+              ₹{priceRange[0]} - ₹{priceRange[1]}
+            </div>
+            <div className="price-slider-container">
               <input
                 type="range"
                 min="0"
@@ -97,6 +101,7 @@ const ProductSearchFilter = ({ onFilterChange }) => {
                   setPriceRange(newRange);
                   applyFilters(searchTerm, selectedCategory, newRange);
                 }}
+                className="price-slider"
               />
               <input
                 type="range"
@@ -109,21 +114,24 @@ const ProductSearchFilter = ({ onFilterChange }) => {
                   setPriceRange(newRange);
                   applyFilters(searchTerm, selectedCategory, newRange);
                 }}
+                className="price-slider"
               />
             </div>
           </div>
 
-          <button 
-            className="clear-filters"
-            onClick={() => {
-              setSearchTerm('');
-              setSelectedCategory('all');
-              setPriceRange([0, 10000]);
-              applyFilters('', 'all', [0, 10000]);
-            }}
-          >
-            <FaTimes /> Clear All
-          </button>
+          <div className="filter-actions">
+            <button 
+              className="clear-filters"
+              onClick={() => {
+                setSearchTerm('');
+                setSelectedCategory('all');
+                setPriceRange([0, 10000]);
+                applyFilters('', 'all', [0, 10000]);
+              }}
+            >
+              <FaTimes /> Clear All
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -1,7 +1,5 @@
-/* src/components/WelcomeMarquee.css */
-
 .welcome-marquee {
-  background: linear-gradient(135deg, var(--dark-black) 0%, var(--primary-red) 100%);
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
   color: var(--white);
   padding: 12px 0;
   overflow: hidden;
@@ -9,7 +7,8 @@
   font-weight: 600;
   z-index: 1001;
   width: 100%;
-  /* margin-top is now controlled by App.css */
+  /* Ensure visibility in both modes */
+  display: block !important;
 }
 
 .marquee-content {
@@ -26,6 +25,13 @@
   padding: 0 30px;
   font-size: 0.95rem;
   white-space: nowrap;
+  font-family: var(--font-primary);
+  font-weight: var(--font-medium);
+}
+
+/* Dark mode marquee */
+.dark-mode .welcome-marquee {
+  background: linear-gradient(135deg, var(--dark-green) 0%, #022c22 100%);
 }
 
 /* Pause animation on hover */
@@ -47,7 +53,7 @@
   content: '✓';
   margin-right: 8px;
   font-weight: bold;
-  color: var(--accent-red);
+  color: var(--accent-green);
 }
 
 /* Responsive Design */

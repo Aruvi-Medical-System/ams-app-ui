@@ -1,18 +1,20 @@
 // All company information - easily customizable
+import logoImage from '../assets/logo.png';
 export const companyConfig = {
-  // Basic Company Info
-  name:"Aruvi Medical Systems",
+   // Basic Company Info
+  name: "Aruvi Medical Systems",
   legalName: "Aruvi Medical Systems Pvt. Ltd.",
   tagline: "Your Trusted Partner in Healthcare Solutions",
   logo: {
-    text: "logo.png", // or use image path: "/logo.png"
-    type: "image" // or "text"
+    type: "image", // Change from "text" to "image"
+    image: logoImage, // Path to your logo
+    text: "Aruvi Medical Systems" // Fallback text
   },
   
   // Contact Information
   contact: {
     phone: {
-      primary: "+91 63855 86669"
+      primary: "+91 90805 87465"
     },
     email: {
       primary: "aruvimedicalsystem76@gmail.com",
@@ -77,27 +79,37 @@ export const companyConfig = {
 
   // Features Highlight
   features: [
-    {
-      icon: "🏥",
-      title: "Hospital Grade Equipment",
-      description: "Medical-grade equipment meeting international standards"
-    },
-    {
-      icon: "🚚",
-      title: "Fast Delivery",
-      description: "Quick and reliable shipping across the country"
-    },
-    {
-      icon: "🔧", 
-      title: "24/7 Support",
-      description: "Round-the-clock technical support and maintenance"
-    },
-    {
-      icon: "💰",
-      title: "Competitive Pricing",
-      description: "Best prices for bulk orders and long-term partnerships"
-    }
-  ],
+  {
+    icon: "🏥",
+    title: "Hospital Grade Equipment",
+    description: "Medical-grade equipment meeting international standards"
+  },
+  {
+    icon: "🚚",
+    title: "Fast Delivery",
+    description: "Quick and reliable shipping across the country"
+  },
+  {
+    icon: "🔧", 
+    title: "24/7/365 Support",
+    description: "Round the clock technical support, equipment restoration & maintenance"
+  },
+  {
+    icon: "💰",
+    title: "Competitive Pricing",
+    description: "Best prices for bulk orders and long-term partnerships"
+  },
+  {
+    icon: "⭐",
+    title: "Customer Satisfaction",
+    description: "98% customer satisfaction rate with dedicated account management"
+  },
+  {
+    icon: "🛡️",
+    title: "Comprehensive Warranty", 
+    description: "6 months on accessories, 1 year on machines, extended warranty available"
+  }
+],
   visionMission: {
     vision: {
       title: "Our Vision",

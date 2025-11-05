@@ -6,7 +6,7 @@ const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
     // Multiple phone number cleaning methods
     // let phoneNumber = companyConfig.contact.whatsapp;
-    let phoneNumber = '+917550087406'; // Replace with actual number for testing
+    let phoneNumber = '+919080587465'; // Replace with actual number for testing
     
     // Method 1: Remove all non-digit characters
     // phoneNumber = phoneNumber.replace(/\D/g, '');

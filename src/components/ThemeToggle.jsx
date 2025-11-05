@@ -17,7 +17,7 @@ const ThemeToggle = () => {
           {isDarkMode ? <FaMoon /> : <FaSun />}
         </div>
       </div>
-      <span className="toggle-label">
+      <span className="toggle-label mobile-hidden">
         {isDarkMode ? 'Dark' : 'Light'}
       </span>
     </button>

@@ -33,8 +33,8 @@ const EnhancedHero = ({ company, searchQuery, setSearchQuery }) => {
                 data-animation="fadeInUp" 
                 data-delay="400"
               >
-                Advanced <span className="highlight">Medical Equipment</span> 
-                for Modern Healthcare
+                Advanced <span className="highlight">Medical Equipment </span> 
+                 for Modern Healthcare
               </h1>
               
               <p 

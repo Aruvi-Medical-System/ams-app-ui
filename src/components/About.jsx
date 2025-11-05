@@ -13,6 +13,11 @@ const About = ({ company }) => {
     { icon: <FaShieldAlt />, number: '100%', label: 'Quality Certified' }
   ];
 
+  // Updated features array with 2 new ones
+  const updatedFeatures = [
+    ...company.features,
+  ];
+
   return (
     <section id="about" className="section">
       <div className="container">
@@ -37,7 +42,7 @@ const About = ({ company }) => {
               data-animation="fadeInUp" 
               data-delay="400"
             >
-              {company.features.map((feature, index) => (
+              {updatedFeatures.map((feature, index) => (
                 <div 
                   key={index} 
                   className="feature-item"

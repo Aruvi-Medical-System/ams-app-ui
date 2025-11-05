@@ -220,3 +220,15 @@
     padding: 15px;
   }
 }
+/* In FeaturedProducts.css */
+.product-card {
+  border-top: 3px solid var(--medical-blue);
+}
+
+.product-name {
+  color: var(--primary-blue);
+}
+
+.product-badge {
+  background: var(--medical-blue);
+}

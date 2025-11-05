@@ -5,7 +5,8 @@ import EnhancedHero from './components/EnhancedHero';
 import WelcomeMarquee from './components/WelcomeMarquee';
 import About from './components/About';
 import VisionMission from './components/VisionMission';
-import ProductCategories from './components/ProductCategories';
+import TrustBadges from './components/TrustBadges';
+import EnhancedProductCategories from './components/EnhancedProductCategories';
 import FeaturedProducts from './components/FeaturedProducts';
 import Certifications from './components/Certifications';
 import ReviewsCarousel from './components/ReviewsCarousel';
@@ -15,40 +16,45 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import LeadCaptureModal from './components/LeadCaptureModal';
 import FloatingButtons from './components/FloatingButtons';
+import ContactPage from './components/ContactPage';
 import { useHeaderHeight } from './hooks/useHeaderHeight';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
-  useHeaderHeight(); // This will dynamically set the marquee margin
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'contact'
+  useHeaderHeight();
 
-  return (
-    <div className="App">
-      <LeadCaptureModal />
-      
-      {/* HEADER FIRST */}
+  // Render Home Page
+  const renderHomePage = () => (
+    <>
       <EnhancedHeader 
         company={companyConfig} 
         searchQuery={searchQuery} 
-        setSearchQuery={setSearchQuery} 
+        setSearchQuery={setSearchQuery}
+        onNavigate={setCurrentPage}
       />
       
-      {/* MARQUEE SECOND - margin will be set dynamically */}
       <WelcomeMarquee />
       
-      {/* HERO THIRD */}
       <EnhancedHero 
         company={companyConfig}
         searchQuery={searchQuery} 
         setSearchQuery={setSearchQuery} 
       />
       
+      <TrustBadges />
+      
       <About company={companyConfig} />
       <VisionMission company={companyConfig} />
       
       <section id="products" className="section light-bg">
         <div className="container">
-          <h2 className="section-title">Our Products</h2>
-          <ProductCategories />
+          <h2 className="section-title">Our Medical Products</h2>
+          <p className="section-subtitle">
+            Premium quality surgical instruments and medical equipment trusted by healthcare professionals
+          </p>
+          <EnhancedProductCategories />
           <FeaturedProducts />
         </div>
       </section>
@@ -61,6 +67,28 @@ function App() {
       
       <FloatingButtons />
       <WhatsAppButton />
+    </>
+  );
+
+  // Render Contact Page
+  const renderContactPage = () => (
+    <>
+      <EnhancedHeader 
+        company={companyConfig} 
+        searchQuery={searchQuery} 
+        setSearchQuery={setSearchQuery}
+        onNavigate={setCurrentPage}
+      />
+      <ContactPage onBack={() => setCurrentPage('home')} />
+      <Footer company={companyConfig} />
+      <WhatsAppButton />
+    </>
+  );
+
+  return (
+    <div className="App">
+      <LeadCaptureModal />
+      {currentPage === 'home' ? renderHomePage() : renderContactPage()}
     </div>
   );
 }

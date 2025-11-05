@@ -164,3 +164,21 @@
     font-size: 1.1rem;
   }
 }
+
+.footer {
+  background: var(--dark-blue);
+}
+
+.footer::before {
+  background: linear-gradient(135deg, var(--medical-blue), var(--primary-blue));
+}
+
+.social-links a:hover {
+  background: var(--medical-blue);
+}
+.footer-logo {
+  height: 40px;
+  width: auto;
+  margin-bottom: 15px;
+  object-fit: contain;
+}

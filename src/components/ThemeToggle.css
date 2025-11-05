@@ -9,12 +9,13 @@
   cursor: pointer;
   transition: all 0.3s ease;
   color: var(--text-dark);
-  font-weight: 500;
+  font-family: var(--font-primary);
+  font-weight: var(--font-medium);
   font-size: 0.9rem;
 }
 
 .theme-toggle:hover {
-  border-color: var(--primary-red);
+  border-color: var(--primary-green);
   transform: scale(1.05);
 }
 
@@ -28,7 +29,7 @@
 }
 
 .theme-toggle.dark .toggle-track {
-  background: var(--primary-red);
+  background: var(--primary-green);
 }
 
 .toggle-thumb {
@@ -44,22 +45,27 @@
   justify-content: center;
   transition: all 0.3s ease;
   font-size: 0.7rem;
-  color: var(--dark-black);
+  color: var(--dark-green);
 }
 
 .theme-toggle.dark .toggle-thumb {
   left: 22px;
   background: var(--white);
+  color: var(--dark-green);
 }
 
 .toggle-label {
-  font-weight: 600;
+  font-weight: var(--font-semibold);
 }
 
-/* Responsive Design */
+/* Hide text on mobile */
 @media (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
+  
   .theme-toggle {
-    padding: 6px 10px;
+    padding: 6px 8px;
     font-size: 0.8rem;
   }
   
@@ -76,5 +82,26 @@
   
   .theme-toggle.dark .toggle-thumb {
     left: 19px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .theme-toggle {
+    padding: 5px 6px;
+  }
+  
+  .toggle-track {
+    width: 32px;
+    height: 16px;
+  }
+  
+  .toggle-thumb {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .theme-toggle.dark .toggle-thumb {
+    left: 18px;
   }
 }

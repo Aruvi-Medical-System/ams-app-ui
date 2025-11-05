@@ -7,7 +7,15 @@ const Footer = ({ company }) => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>{company.name}</h3>
+            {company.logo.type === 'text' ? (
+              <h3>{company.logo.text}</h3>
+            ) : (
+              <img 
+                src={company.logo.image} 
+                alt={company.name}
+                className="footer-logo"
+              />
+            )}
             <p>
               {company.tagline} Your trusted partner in medical equipment supply, 
               delivering excellence in healthcare solutions worldwide.
