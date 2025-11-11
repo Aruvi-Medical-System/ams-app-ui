@@ -4,41 +4,41 @@
 export const productImages = {
   // Home Care Products
   'bp-machine': `${import.meta.env.BASE_URL}/src/assets/products/bp-machine.jpg`,
-  'glucometer': '/src/assets/products/glucometer.jpg', 
-  'pulse-oximeter': '/src/assets/products/pulse-oximeter.jpg',
-  'thermometer': '/src/assets/products/thermometer.jpg',
-  'hot-air-bag': '/src/assets/products/hot-air-bag.jpg', // You'll need to add this
-  'nebuliser': '/src/assets/products/nebuliser.jpg', // You'll need to add this
+  'glucometer': `${import.meta.env.BASE_URL}/src/assets/products/glucometer.jpg`, 
+  'pulse-oximeter': `${import.meta.env.BASE_URL}/src/assets/products/pulse-oximeter.jpg`,
+  'thermometer': `${import.meta.env.BASE_URL}/src/assets/products/thermometer.jpg`,
+  'hot-air-bag': `${import.meta.env.BASE_URL}/src/assets/products/hot-air-bag.jpg`, // You'll need to add this
+  'nebuliser': `${import.meta.env.BASE_URL}/src/assets/products/nebuliser.jpg`, // You'll need to add this
   
   // ECG Cables
-  'ecg-philips': '/src/assets/products/ecg-philips.jpg',
-  'ecg-mindray': '/src/assets/products/ecg-mindray.jpg',
-  'ecg-nikkon': '/src/assets/products/ecg-nikkon.jpg',
-  'ecg-bpl': '/src/assets/products/ecg-bpl.jpg',
-  'ecg-schiller': '/src/assets/products/ecg-schiller.jpg',
+  'ecg-philips': `${import.meta.env.BASE_URL}/src/assets/products/ecg-philips.jpg`,
+  'ecg-mindray': `${import.meta.env.BASE_URL}/src/assets/products/ecg-mindray.jpg`,
+  'ecg-nikkon': `${import.meta.env.BASE_URL}/src/assets/products/ecg-nikkon.jpg`,
+  'ecg-bpl': `${import.meta.env.BASE_URL}/src/assets/products/ecg-bpl.jpg`,
+  'ecg-schiller': `${import.meta.env.BASE_URL}/src/assets/products/ecg-schiller.jpg`,
   
   // Temperature Probes
-  'temp-philips': '/src/assets/products/temp-philips.jpg',
-  'temp-mindray': '/src/assets/products/temp-mindray.jpg',
-  'temp-schiller': '/src/assets/products/temp-schiller.jpg',
+  'temp-philips': `${import.meta.env.BASE_URL}/src/assets/products/temp-philips.jpg`,
+  'temp-mindray': `${import.meta.env.BASE_URL}/src/assets/products/temp-mindray.jpg`,
+  'temp-schiller': `${import.meta.env.BASE_URL}/src/assets/products/temp-schiller.jpg`,
   
   // SpO2 Sensors
-  'spo2-philips': '/src/assets/products/spo2-philips.jpg',
-  'spo2-mindray': '/src/assets/products/spo2-mindray.jpg',
-  'spo2-nikkon': '/src/assets/products/spo2-nikkon.jpg',
-  'spo2-schiller': '/src/assets/products/spo2-schiller.jpg',
+  'spo2-philips': `${import.meta.env.BASE_URL}/src/assets/products/spo2-philips.jpg`,
+  'spo2-mindray': `${import.meta.env.BASE_URL}/src/assets/products/spo2-mindray.jpg`,
+  'spo2-nikkon': `${import.meta.env.BASE_URL}/src/assets/products/spo2-nikkon.jpg`,
+  'spo2-schiller': `${import.meta.env.BASE_URL}/src/assets/products/spo2-schiller.jpg`,
   
   // NIBP Cuffs
-  'nibp-single-philips': '/src/assets/products/nibp-single-philips.jpg',
-  'nibp-double-philips': '/src/assets/products/nibp-double-philips.jpg',
-  'nibp-single-mindray': '/src/assets/products/nibp-single-mindray.jpg',
-  'nibp-double-mindray': '/src/assets/products/nibp-double-mindray.jpg',
+  'nibp-single-philips': `${import.meta.env.BASE_URL}/src/assets/products/nibp-single-philips.jpg`,
+  'nibp-double-philips': `${import.meta.env.BASE_URL}/src/assets/products/nibp-double-philips.jpg`,
+  'nibp-single-mindray': `${import.meta.env.BASE_URL}/src/assets/products/nibp-single-mindray.jpg`,
+  'nibp-double-mindray': `${import.meta.env.BASE_URL}/src/assets/products/nibp-double-mindray.jpg`,
   
   // NIBP Hoses
-  'hose-philips': '/src/assets/products/hose-philips.jpg',
-  'hose-mindray': '/src/assets/products/hose-mindray.jpg',
-  'hose-nikkon': '/src/assets/products/hose-nikkon.jpg',
-  'hose-schiller': '/src/assets/products/hose-schiller.jpg'
+  'hose-philips': `${import.meta.env.BASE_URL}/src/assets/products/hose-philips.jpg`,
+  'hose-mindray': `${import.meta.env.BASE_URL}/src/assets/products/hose-mindray.jpg`,
+  'hose-nikkon': `${import.meta.env.BASE_URL}/src/assets/products/hose-nikkon.jpg`,
+  'hose-schiller': `${import.meta.env.BASE_URL}/src/assets/products/hose-schiller.jpg`
 };
 
 // Product categories
@@ -48,42 +48,42 @@ export const productCategories = [
     name: 'Home Care Products',
     icon: '🏠',
     description: 'Essential medical devices for home healthcare',
-    image: '/src/assets/products/home_care_products.jpg'
+    image: `${import.meta.env.BASE_URL}/src/assets/products/home_care_products.jpg`
   },
   {
     id: 'ecg-cables', 
     name: 'ECG Cables',
     icon: '📊',
     description: 'High-quality ECG cables for various monitor brands',
-    image: '/src/assets/products/ecg_cables.jpg'
+    image: `${import.meta.env.BASE_URL}/src/assets/products/ecg_cables.jpg`
   },
   {
     id: 'temperature-probes',
     name: 'Temperature Probes',
     icon: '🌡️',
     description: 'Precision temperature probes for medical monitors',
-    image: '/src/assets/products/temperature_probes.jpg'
+    image: `${import.meta.env.BASE_URL}/src/assets/products/temperature_probes.jpg`
   },
   {
     id: 'spo2-sensors',
     name: 'SpO2 Sensors',
     icon: '❤️',
     description: 'Clip-type SpO2 sensors for accurate oxygen monitoring',
-    image: '/src/assets/products/spo2sensor.jpg'
+    image: `${import.meta.env.BASE_URL}/src/assets/products/spo2sensor.jpg`
   },
   {
     id: 'nibp-cuffs',
     name: 'NIBP Cuffs',
     icon: '💪',
     description: 'Single & double side NIBP cuffs for blood pressure monitoring',
-    image: '/src/assets/products/cuff.jpg'
+    image: `${import.meta.env.BASE_URL}/src/assets/products/cuff.jpg`
   },
   {
     id: 'nibp-hoses',
     name: 'NIBP Hoses',
     icon: '🔄',
     description: 'Durable NIBP hoses for various monitor brands',
-    image: '/src/assets/products/hose.jpg'
+    image: `${import.meta.env.BASE_URL}/src/assets/products/hose.jpg`
   }
 ];
 
