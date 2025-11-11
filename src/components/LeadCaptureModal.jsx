@@ -124,7 +124,7 @@ const LeadCaptureModal = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="lead-form">
-            <div className="form-group">
+            {/* <div className="form-group">
               <div className="input-icon">
                 <FaUser />
               </div>
@@ -176,7 +176,65 @@ const LeadCaptureModal = () => {
                 value={formData.requirement}
                 onChange={handleChange}
               />
-            </div>
+            </div> */}
+            <div className="form-group">
+    <div className="input-icon">
+      <FaUser />
+    </div>
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Full Name *"
+      value={formData.name}
+      onChange={handleChange}
+      required
+      className="form-input-fixed"
+      
+    />
+  </div>
+
+  <div className="form-group">
+    <div className="input-icon">
+      <FaPhone />
+    </div>
+    <input
+      type="tel"
+      name="phone"
+      placeholder="Mobile Number *"
+      value={formData.phone}
+      onChange={handleChange}
+      required
+      pattern="[0-9]{10}"
+      title="Please enter a valid 10-digit mobile number"
+      className="form-input-fixed"
+    />
+  </div>
+
+  <div className="form-group">
+    <div className="input-icon">
+      <FaEnvelope />
+    </div>
+    <input
+      type="email"
+      name="email"
+      placeholder="Email Address *"
+      value={formData.email}
+      onChange={handleChange}
+      required
+      className="form-input-fixed"
+    />
+  </div>
+
+  <div className="form-group full-width">
+    <textarea
+      name="requirement"
+      placeholder="Tell us about your medical equipment requirements (Optional)..."
+      rows="3"
+      value={formData.requirement}
+      onChange={handleChange}
+      className="form-textarea"
+    />
+  </div>
 
             <button type="submit" className="btn btn-primary submit-btn">
               <FaPaperPlane /> Get Personalized Quote

@@ -3,7 +3,7 @@
 // Image configuration - Update these paths when you add images
 export const productImages = {
   // Home Care Products
-  'bp-machine': '/src/assets/products/bp-machine.jpg',
+  'bp-machine': `${import.meta.env.BASE_URL}/src/assets/products/bp-machine.jpg`,
   'glucometer': '/src/assets/products/glucometer.jpg', 
   'pulse-oximeter': '/src/assets/products/pulse-oximeter.jpg',
   'thermometer': '/src/assets/products/thermometer.jpg',
@@ -47,37 +47,43 @@ export const productCategories = [
     id: 'home-care',
     name: 'Home Care Products',
     icon: '🏠',
-    description: 'Essential medical devices for home healthcare'
+    description: 'Essential medical devices for home healthcare',
+    image: '/src/assets/products/home_care_products.jpg'
   },
   {
     id: 'ecg-cables', 
     name: 'ECG Cables',
     icon: '📊',
-    description: 'High-quality ECG cables for various monitor brands'
+    description: 'High-quality ECG cables for various monitor brands',
+    image: '/src/assets/products/ecg_cables.jpg'
   },
   {
     id: 'temperature-probes',
     name: 'Temperature Probes',
     icon: '🌡️',
-    description: 'Precision temperature probes for medical monitors'
+    description: 'Precision temperature probes for medical monitors',
+    image: '/src/assets/products/temperature_probes.jpg'
   },
   {
     id: 'spo2-sensors',
     name: 'SpO2 Sensors',
     icon: '❤️',
-    description: 'Clip-type SpO2 sensors for accurate oxygen monitoring'
+    description: 'Clip-type SpO2 sensors for accurate oxygen monitoring',
+    image: '/src/assets/products/spo2sensor.jpg'
   },
   {
     id: 'nibp-cuffs',
     name: 'NIBP Cuffs',
     icon: '💪',
-    description: 'Single & double side NIBP cuffs for blood pressure monitoring'
+    description: 'Single & double side NIBP cuffs for blood pressure monitoring',
+    image: '/src/assets/products/cuff.jpg'
   },
   {
     id: 'nibp-hoses',
     name: 'NIBP Hoses',
     icon: '🔄',
-    description: 'Durable NIBP hoses for various monitor brands'
+    description: 'Durable NIBP hoses for various monitor brands',
+    image: '/src/assets/products/hose.jpg'
   }
 ];
 

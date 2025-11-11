@@ -473,3 +473,232 @@ body.modal-open {
     font-size: 0.9rem;
   }
 }
+/* Enhanced Modal Header */
+.lead-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 30px 20px;
+  background: linear-gradient(135deg, var(--primary-green), var(--medical-green));
+  border-radius: 20px 20px 0 0;
+  color: var(--white);
+  position: relative;
+  text-align: center;
+}
+
+.modal-logo {
+  flex: 1;
+  text-align: center;
+  margin-right: 40px; /* Space for close button */
+}
+
+.modal-logo h2 {
+  margin: 0 0 5px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.modal-logo p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Enhanced Close Button */
+.close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Enhanced Form Styling */
+.lead-modal-content {
+  padding: 30px;
+}
+
+.modal-welcome {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.modal-welcome h3 {
+  color: var(--primary-green);
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.modal-welcome p {
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.lead-form {
+  margin-bottom: 25px;
+}
+
+.lead-form .form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  z-index: 2;
+  font-size: 1.1rem;
+}
+
+.lead-form input,
+.lead-form textarea {
+  width: 100%;
+  padding: 15px 15px 15px 45px;
+  border: 2px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--white);
+  font-family: inherit;
+  color: var(--text-dark);
+}
+
+.lead-form textarea {
+  padding: 15px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.lead-form input:focus,
+.lead-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Benefits Section */
+.modal-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: var(--light-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.benefit-item span:first-child {
+  font-size: 1.2rem;
+  min-width: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .lead-modal {
+    max-width: 95%;
+  }
+  
+  .lead-modal-header {
+    padding: 25px 25px 15px;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .lead-modal-content {
+    padding: 25px;
+  }
+  
+  .modal-benefits {
+    padding: 15px;
+  }
+  
+  .modal-logo h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lead-modal-header {
+    padding: 20px 20px 15px;
+  }
+  
+  .lead-modal-content {
+    padding: 20px;
+  }
+  
+  .modal-welcome h3 {
+    font-size: 1.2rem;
+  }
+  
+  .benefit-item {
+    font-size: 0.9rem;
+  }
+  
+  .lead-form input,
+  .lead-form textarea {
+    padding: 12px 12px 12px 40px;
+  }
+  
+  .input-icon {
+    left: 12px;
+    font-size: 1rem;
+  }
+}
+.form-input-fixed {
+  padding: 15px 15px 15px 50px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}

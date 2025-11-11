@@ -19,6 +19,29 @@ const FeaturedProducts = ({ onAddToQuote }) => {
     return name.split(' ').map(word => word[0]).join('').toUpperCase();
   };
 
+  // Function to handle image loading errors
+  const handleImageError = (e, product) => {
+    console.warn(`Image failed to load for ${product.name}:`, e.target.src);
+    e.target.style.display = 'none';
+    
+    // Create fallback with product initials
+    const fallback = document.createElement('div');
+    fallback.className = 'product-image-fallback';
+    fallback.textContent = getProductInitials(product.name);
+    fallback.style.display = 'flex';
+    fallback.style.alignItems = 'center';
+    fallback.style.justifyContent = 'center';
+    fallback.style.width = '100%';
+    fallback.style.height = '100%';
+    fallback.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    fallback.style.color = 'white';
+    fallback.style.fontWeight = '700';
+    fallback.style.fontSize = '1.5rem';
+    fallback.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
+    
+    e.target.parentNode.appendChild(fallback);
+  };
+
   return (
     <section className="section">
       <div className="container">
@@ -31,7 +54,12 @@ const FeaturedProducts = ({ onAddToQuote }) => {
           {featuredProducts.map((product, index) => (
             <div key={product.id} className="product-card">
               <div className="product-image">
-                {product.name.split(' ').map(word => word[0]).join('').toUpperCase()}
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  className="product-real-image"
+                  onError={(e) => handleImageError(e, product)}
+                />
                 <div className="product-badge">Featured</div>
               </div>
               <div className="product-content">
@@ -56,7 +84,7 @@ const FeaturedProducts = ({ onAddToQuote }) => {
                   </div>
                   <button 
                     className="btn btn-primary"
-                    onClick={() => onAddToQuote(product)}
+                    onClick={() => handleAddToQuote(product)}
                   >
                     Add to Quote
                   </button>

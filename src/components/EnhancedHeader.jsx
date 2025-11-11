@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaShoppingCart, FaBars, FaTimes, FaSearch } from 'react-icons/fa';
 import './EnhancedHeader.css';
+import ServicesDropdown from './ServicesDropdown';
 import SearchSuggestions from './SearchSuggestions';
 
 const EnhancedHeader = ({ company, searchQuery, setSearchQuery, onNavigate }) => {
@@ -52,6 +53,7 @@ const EnhancedHeader = ({ company, searchQuery, setSearchQuery, onNavigate }) =>
             <div className="nav-links">
               <a href="#home" onClick={() => handleNavClick('home')}>Home</a>
               <a href="#about" onClick={() => handleNavClick('about')}>About</a>
+              <ServicesDropdown />
               <a href="#products" onClick={() => handleNavClick('products')}>Products</a>
               <a href="#certifications" onClick={() => handleNavClick('certifications')}>Certifications</a>
               <a href="#contact" onClick={() => handleNavClick('contact')}>Contact</a>
@@ -180,6 +182,10 @@ const EnhancedHeader = ({ company, searchQuery, setSearchQuery, onNavigate }) =>
             <a href="#about" onClick={() => handleNavClick('about')} className="sidebar-nav-item">
               <span>ℹ️</span>
               <span>About Us</span>
+            </a>
+            <a href="#services" onClick={() => handleNavClick('services')} className="sidebar-nav-item">
+              <span>⚙️</span>
+              <span>Services</span>
             </a>
             <a href="#products" onClick={() => handleNavClick('products')} className="sidebar-nav-item">
               <span>🛒</span>

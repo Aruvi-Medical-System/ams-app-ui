@@ -50,8 +50,8 @@
   font-weight: var(--font-medium);
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
+  display: inline-block;
 }
-
 .enhanced-title {
   font-size: 3.5rem;
   color: var(--white);

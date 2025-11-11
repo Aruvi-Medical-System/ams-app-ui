@@ -42,6 +42,7 @@ const EnhancedHero = ({ company, searchQuery, setSearchQuery }) => {
                 className="hero-badge" 
                 data-animation="fadeInUp" 
                 data-delay="100"
+                style={{ marginTop: '40px' }}
               >
                 <span>Trusted by {company.stats.healthcarePartners}+ Healthcare Facilities</span>
               </div>

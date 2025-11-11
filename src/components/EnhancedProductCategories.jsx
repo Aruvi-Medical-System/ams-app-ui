@@ -1,3 +1,4 @@
+// src/components/EnhancedProductCategories.jsx
 import React, { useState } from 'react';
 import { productCategories, allProducts } from '../config/products';
 import { useScrollAnimations } from '../hooks/useScrollAnimations';
@@ -7,6 +8,7 @@ const EnhancedProductCategories = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imageErrors, setImageErrors] = useState({});
   useScrollAnimations();
 
   const handleCategoryClick = (categoryId) => {
@@ -25,11 +27,22 @@ const EnhancedProductCategories = () => {
   };
 
   const handleImageClick = (product) => {
-    setSelectedImage(product.image);
+    if (product.image && !imageErrors[product.id]) {
+      setSelectedImage(product.image);
+    }
   };
 
   const closeImageModal = () => {
     setSelectedImage(null);
+  };
+
+  const handleImageError = (productId) => {
+    setImageErrors(prev => ({ ...prev, [productId]: true }));
+  };
+
+  const handleCategoryImageError = (categoryId, event) => {
+    event.target.style.display = 'none';
+    // The fallback icon will be shown via CSS
   };
 
   return (
@@ -39,7 +52,7 @@ const EnhancedProductCategories = () => {
           Our Medical Products
         </h2>
         <p className="section-subtitle" data-animation="fadeInUp" data-delay="300">
-          Premium quality surgical instruments and medical equipment trusted by healthcare professionals
+          Premium quality medical equipment trusted by healthcare professionals
         </p>
 
         {/* Categories Grid */}
@@ -54,17 +67,15 @@ const EnhancedProductCategories = () => {
             >
               <div className="category-image-container">
                 <img 
-                  src={category.image || '/images/placeholder.jpg'} 
+                  src={category.image} 
                   alt={category.name}
                   className="category-image"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    const fallback = document.createElement('div');
-                    fallback.className = 'category-icon';
-                    fallback.textContent = category.icon;
-                    e.target.parentNode.appendChild(fallback);
-                  }}
+                  onError={(e) => handleCategoryImageError(category.id, e)}
                 />
+                {/* Fallback icon - shown when image fails to load */}
+                <div className="category-icon-fallback">
+                  {category.icon}
+                </div>
               </div>
               <h3 className="category-name">{category.name}</h3>
               <p className="category-description">{category.description}</p>
@@ -98,22 +109,18 @@ const EnhancedProductCategories = () => {
                     className="product-image-category"
                     onClick={() => handleImageClick(product)}
                   >
-                    <img 
-                      src={product.image || '/images/placeholder.jpg'} 
-                      alt={product.name}
-                      className="product-image"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        const fallback = e.target.parentNode.querySelector('.product-image-fallback');
-                        if (fallback) fallback.style.display = 'flex';
-                      }}
-                    />
-                    <div 
-                      className="product-image-fallback"
-                      style={{ display: 'none' }}
-                    >
-                      {product.name.split(' ').map(word => word[0]).join('').toUpperCase()}
-                    </div>
+                    {product.image && !imageErrors[product.id] ? (
+                      <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="product-image"
+                        onError={() => handleImageError(product.id)}
+                      />
+                    ) : (
+                      <div className="product-image-fallback">
+                        {product.name.split(' ').map(word => word[0]).join('').toUpperCase()}
+                      </div>
+                    )}
                   </div>
                   <div className="product-content-category">
                     <h4 className="product-name-category">{product.name}</h4>

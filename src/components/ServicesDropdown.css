@@ -1,0 +1,131 @@
+/* ServicesDropdown.css */
+.services-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.services-trigger {
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  font-family: var(--font-primary);
+  font-weight: var(--font-semibold);
+  font-size: 0.95rem;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.services-trigger::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-green);
+  transition: width 0.3s ease;
+}
+
+.services-dropdown:hover .services-trigger::after {
+  width: 100%;
+}
+
+.services-dropdown:hover .services-trigger {
+  color: var(--primary-green);
+}
+
+.services-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 400px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-light);
+  padding: 25px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.services-dropdown:hover .services-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.services-category h4 {
+  margin: 0 0 12px 0;
+  color: var(--primary-green);
+  font-size: 0.9rem;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.services-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.services-category li {
+  margin-bottom: 8px;
+}
+
+.services-category a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  padding: 4px 0;
+  display: block;
+}
+
+.services-category a:hover {
+  color: var(--primary-green);
+  transform: translateX(5px);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .services-dropdown {
+    width: 100%;
+  }
+  
+  .services-trigger {
+    width: 100%;
+    text-align: left;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  
+  .services-menu {
+    position: static;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 0 20px 20px;
+    display: block;
+  }
+  
+  .services-category {
+    margin-bottom: 20px;
+  }
+  
+  .services-category:last-child {
+    margin-bottom: 0;
+  }
+}

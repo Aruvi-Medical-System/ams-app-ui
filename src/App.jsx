@@ -18,6 +18,7 @@ import LeadCaptureModal from './components/LeadCaptureModal';
 import FloatingButtons from './components/FloatingButtons';
 import ContactPage from './components/ContactPage';
 import { useHeaderHeight } from './hooks/useHeaderHeight';
+import ServicesSection from './components/ServicesSection';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -47,6 +48,8 @@ function App() {
       
       <About company={companyConfig} />
       <VisionMission company={companyConfig} />
+      <ServicesSection />
+      
       
       <section id="products" className="section light-bg">
         <div className="container">
