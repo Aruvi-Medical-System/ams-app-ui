@@ -1,4 +1,104 @@
-/* Inherits EVERYTHING from your LeadCaptureModal.css */
+/* AuthModal.css */
+
+/* OVERLAY */
+.lead-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lead-modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* MODAL CONTAINER */
+.lead-modal {
+  background: var(--white);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(30px);
+  transition: transform 0.3s ease;
+}
+
+.lead-modal-overlay.visible .lead-modal {
+  transform: translateY(0);
+}
+
+/* MODAL HEADER */
+.lead-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px 15px;
+  border-bottom: 1px solid var(--border-light);
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--medical-green) 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.modal-logo h2 {
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-logo p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* MODAL CONTENT */
+.lead-modal-content {
+  padding: 30px;
+}
+
+.modal-welcome h3 {
+  color: var(--dark-green);
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.modal-welcome p {
+  color: var(--text-light);
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
 
 /* GOOGLE LOGIN BUTTON */
 .google-btn {
@@ -15,8 +115,8 @@
   justify-content: center;
   gap: 10px;
   cursor: pointer;
-  margin-bottom: 15px;
-  transition: 0.3s ease;
+  margin-bottom: 20px; /* increased spacing for better alignment */
+  transition: background 0.3s ease;
 }
 
 .google-btn:hover {
@@ -26,12 +126,12 @@
 /* SEPARATOR */
 .separator {
   text-align: center;
-  margin: 15px 0 25px;
+  margin: 20px 0 25px;
   position: relative;
 }
 
 .separator span {
-  background: #ffffff;
+  background: var(--white);
   padding: 0 12px;
   color: var(--text-light);
   font-size: 0.9rem;
@@ -55,10 +155,59 @@
   right: 0;
 }
 
+/* FORM STYLES */
+.lead-form {
+  width: 100%;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+
+.lead-form input {
+  width: 100%;
+  padding: 15px 20px 15px 50px;
+  border: 2px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--white);
+  color: var(--text-dark);
+}
+
+.lead-form input:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1rem;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: var(--primary-green);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: var(--secondary-green);
+}
+
 /* SWITCH LOGIN/SIGNUP */
 .auth-switch {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
   color: var(--text-light);
   font-size: 0.95rem;
 }
@@ -67,30 +216,26 @@
   color: var(--primary-green);
   font-weight: 600;
   cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
-/* FIX: Prevent icons overlapping fields */
-
-.lead-form {
-  position: relative;
-  width: 100%;
-  margin-top: 10px !important;
+.auth-switch span:hover {
+  color: var(--secondary-green);
 }
 
-.lead-form input,
-.lead-form textarea {
-  padding-left: 50px !important;   /* Ensures text doesn’t overlap icon */
-  position: relative;
-  z-index: 3;
-}
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .lead-modal {
+    width: 95%;
+    margin: 10px;
+  }
 
-/* FIX: Make icons always sit correctly above background */
-.input-icon {
-  z-index: 5 !important;
-  pointer-events: none;
-}
+  .lead-modal-content {
+    padding: 20px;
+  }
 
-/* FIX: Add spacing between header and content */
-.lead-modal-content {
-  padding-top: 35px !important;
+  .modal-welcome h3 {
+    font-size: 1.5rem;
+  }
 }
