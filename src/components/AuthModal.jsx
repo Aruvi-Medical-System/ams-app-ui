@@ -22,15 +22,15 @@ const AuthModal = () => {
   });
 
   useEffect(() => {
-    const shown = sessionStorage.getItem("authModalShown");
-    if (!shown) {
+    // const shown = sessionStorage.getItem("authModalShown");
+    // if (!shown) {
       const t = setTimeout(() => {
         setIsOpen(true);
         setTimeout(() => setIsVisible(true), 50);
-        sessionStorage.setItem("authModalShown", "true");
+        // sessionStorage.setItem("authModalShown", "true");
       }, 1500);
       return () => clearTimeout(t);
-    }
+    // }
   }, []);
 
   const handleClose = () => {
@@ -111,7 +111,7 @@ const AuthModal = () => {
           <form className="lead-form" onSubmit={handleSubmit}>
             {authMode === "signup" && (
               <div className="form-group">
-                <div className="input-icon"><FaUser /></div>
+                {/* <div className="input-icon"><FaUser /></div> */}
                 <input
                   type="text"
                   name="name"
@@ -124,7 +124,7 @@ const AuthModal = () => {
             )}
 
             <div className="form-group">
-              <div className="input-icon"><FaEnvelope /></div>
+              {/* <div className="input-icon"><FaEnvelope /></div> */}
               <input
                 type="email"
                 name="email"
@@ -136,7 +136,7 @@ const AuthModal = () => {
             </div>
 
             <div className="form-group">
-              <div className="input-icon"><FaLock /></div>
+              {/* <div className="input-icon"><FaLock /></div> */}
               <input
                 type="password"
                 name="password"
@@ -149,7 +149,7 @@ const AuthModal = () => {
 
             {authMode === "signup" && (
               <div className="form-group">
-                <div className="input-icon"><FaLock /></div>
+                {/* <div className="input-icon"><FaLock /></div> */}
                 <input
                   type="password"
                   name="confirmPassword"
