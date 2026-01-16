@@ -239,3 +239,130 @@
     font-size: 1.5rem;
   }
 }
+/* Loading overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  z-index: 10;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--primary-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error message */
+.error-message {
+  background: #fee;
+  color: #c33;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid #c33;
+  font-size: 0.9rem;
+}
+/* Password group */
+.password-group {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 1.1rem;
+}
+
+.password-hints {
+  margin-top: 8px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.password-hints ul {
+  margin: 5px 0 0 0;
+  padding-left: 20px;
+}
+
+.password-hints li {
+  color: #666;
+  margin-bottom: 3px;
+  transition: color 0.3s;
+}
+
+.password-hints li.valid {
+  color: var(--primary-green);
+}
+
+/* Error text */
+.error-text {
+  color: #e63946;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Loading spinner small */
+.loading-spinner-small {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid var(--primary-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+/* Close button */
+.close-modal-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-modal-btn:hover {
+  color: #e63946;
+}
+
+/* Auth error message */
+.auth-error-message {
+  background: #ffe6e6;
+  border: 1px solid #ffcccc;
+  color: #cc0000;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 15px 0;
+  text-align: center;
+}

@@ -3,11 +3,13 @@ import { FaShoppingCart, FaBars, FaTimes, FaSearch, FaUserCircle } from 'react-i
 import './EnhancedHeader.css';
 import ServicesDropdown from './ServicesDropdown';
 import SearchSuggestions from './SearchSuggestions';
+import useAuthStore from '../store/authStore';
 
 const EnhancedHeader = ({ company, searchQuery, setSearchQuery, onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const { isAuthenticated, user, logout } = useAuthStore();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,11 +84,32 @@ const EnhancedHeader = ({ company, searchQuery, setSearchQuery, onNavigate }) =>
               </div>
               
               <FaShoppingCart className="cart-icon" />
-              <FaUserCircle 
+      {isAuthenticated ? (
+      <div className="user-menu">
+        <button 
+          className="nav-link user-profile"
+          onClick={() => onNavigate('profile')}
+        >
+          <FaUserCircle 
+          />
+        </button>
+      </div>
+    ) : (
+      <button 
+        className="nav-link login-btn"
+        onClick={() => {
+          // This will trigger the auth modal to show
+          window.location.reload(); // Or use a different approach
+        }}
+      >
+        Login / Signup
+      </button>
+    )}
+              {/* <FaUserCircle 
   className="user-icon"
   style={{ cursor: 'pointer' }}
   onClick={() => onNavigate((prev) => prev === 'profile' ? 'home' : 'profile')}
-/>  
+/>   */}
               
               {/* Mobile Search Toggle */}
               <button className="mobile-search-toggle" onClick={toggleMobileSearch}>

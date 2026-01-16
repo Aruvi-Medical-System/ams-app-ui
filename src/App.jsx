@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { companyConfig } from './config/company';
 import EnhancedHeader from './components/EnhancedHeader';
 import EnhancedHero from './components/EnhancedHero';
@@ -23,11 +23,40 @@ import { useHeaderHeight } from './hooks/useHeaderHeight';
 import ShippingPolicy from "./components/policies/ShippingPolicy";
 import RefundPolicy from "./components/policies/RefundPolicy";
 import PaymentPolicy from "./components/policies/PaymentPolicy";
-import PrivacyPolicy from "./components/policies/PrivacyPolicy";
+// import PrivacyPolicy from "./components/policies/PrivacyPolicy";
 import TermsConditions from "./components/policies/TermsConditions";
+import useAuthStore from './store/authStore';
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState('home');
+  // Get authentication state
+  const { isAuthenticated, user, logout } = useAuthStore();
+
+  // Auto-logout after certain period (e.g., 24 hours)
+  useEffect(() => {
+    const checkAuthExpiry = () => {
+      // You can implement token expiry check here
+      // For example, check if token exists and is valid
+    };
+    
+    checkAuthExpiry();
+    
+    // Check every minute
+    const interval = setInterval(checkAuthExpiry, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Handle browser tab close
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      // You can choose to keep the session or clear it
+      // For security, you might want to clear on tab close:
+      // logout();
+    };
+    
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [logout]);
 
   useHeaderHeight();
 
@@ -75,7 +104,16 @@ function App() {
   );
 
   // Profile Page
-  const renderProfilePage = () => (
+  const renderProfilePage = () => {
+  const { isAuthenticated } = useAuthStore.getState();
+  
+  if (!isAuthenticated) {
+    // Redirect to home if not authenticated
+    setCurrentPage('home');
+    return null;
+  }
+  
+  return (
     <>
       <EnhancedHeader company={companyConfig} searchQuery={searchQuery} setSearchQuery={setSearchQuery} onNavigate={setCurrentPage} />
       <ProfilePage onBack={() => setCurrentPage('home')} />
@@ -83,6 +121,7 @@ function App() {
       <WhatsAppButton />
     </>
   );
+};
   // Policy pages
   const renderShippingPolicy = () => (
     <>
@@ -126,7 +165,7 @@ function App() {
 
   return (
     <div className="App">
-      <AuthModal />
+      {!isAuthenticated && <AuthModal />}
 
       {currentPage === 'home' && renderHomePage()}
       {currentPage === 'contact' && renderContactPage()}
@@ -134,7 +173,7 @@ function App() {
       {currentPage === 'shipping-policy' && renderShippingPolicy()}
       {currentPage === 'refund-policy' && renderRefundPolicy()}
       {currentPage === 'payment-policy' && renderPaymentPolicy()}
-      {currentPage === 'privacy-policy' && renderPrivacyPolicy()}
+      {/* {currentPage === 'privacy-policy' && renderPrivacyPolicy()} */}
       {currentPage === 'terms' && renderTermsConditions()}
 
     </div>
