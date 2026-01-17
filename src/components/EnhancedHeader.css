@@ -517,3 +517,45 @@
 .sidebar-search {
   display: none; /* This removes the search from mobile sidebar */
 }
+/* User menu styles */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-profile {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.user-profile:hover {
+  transform: scale(1.1);
+}
+
+.user-profile svg {
+  font-size: 28px; /* Adjust size as needed */
+  color: var(--primary-green); /* Or your theme color */
+}
+
+.login-btn {
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: var(--primary-green-dark);
+  transform: translateY(-2px);
+}
