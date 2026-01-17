@@ -83,3 +83,5 @@ const About = ({ company }) => {
 };
 
 export default About;
+
+// this is to check the pipeline
